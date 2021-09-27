@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.feriavirtual.apirest.models.Mensaje;
 import com.feriavirtual.apirest.models.Pais;
-import com.feriavirtual.apirest.dbo.PaisDBO;
+import com.feriavirtual.apirest.service.IPaisService;
 
 @RestController
 public class PaisController {
@@ -22,118 +22,33 @@ public class PaisController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	private PaisDBO objPaisDBO = new PaisDBO();
+	@Autowired
+	private IPaisService paisService;
 	
 	@PostMapping("/api/pais")
-	public Mensaje getPais(@RequestBody Pais pais){
-		
-		objPaisDBO.setJdbcTemplate(jdbcTemplate);
-		
-		Mensaje mensaje = new Mensaje();
-		
-		try {
-			
-			if(!pais.getDescripcion().equals("")) {
-				int crearPais = objPaisDBO.crearPais(pais.getDescripcion());
-				
-				if(crearPais == 1) {
-					
-					mensaje.setMsg("Pais " + pais.getDescripcion() + " creado de forma correcta");
-					
-					return mensaje;
-					
-				}
-				
-				mensaje.setMsg("No se creo el pais " + pais.getDescripcion());
-			}else {
-				 mensaje.setMsg("Pais vacío");
-				 
-				 return mensaje;
-			}
-			
-			return mensaje;
-		}catch (Exception e) {
-			mensaje.setMsg(e.getMessage());
-			
-			return mensaje;
-		}
+	public Mensaje crearPais(@RequestBody Pais pais){		
+		return paisService.crearPais(jdbcTemplate, pais);		
 	}
 	
 	@GetMapping("/api/pais")
 	public List<Pais> listarPais(){
-		
-		objPaisDBO.setJdbcTemplate(jdbcTemplate);
-		
-		return objPaisDBO.listarPaises();
-		
+		return paisService.listarPais(jdbcTemplate);
 	}
 	
 	@GetMapping("/api/pais/{id}")
 	public Pais getPaisById(@PathVariable int id) {
-		objPaisDBO.setJdbcTemplate(jdbcTemplate);
-		
-		return objPaisDBO.buscarPaisPorId(id);
-
+		return paisService.getPaisById(jdbcTemplate, id);
 	}
 	
 	@PutMapping("/api/pais/{id}")
 	public Mensaje updatePais(@PathVariable int id,
 			@RequestBody Pais pais) {
-		objPaisDBO.setJdbcTemplate(jdbcTemplate);
-		
-		Mensaje objMensaje = new Mensaje();
-		
-		try {
-			int editarPais = objPaisDBO.editarPais(id, pais.getDescripcion());
-			
-			if(editarPais == 1) {
-				
-				objMensaje.setMsg("País " + pais.getDescripcion() + " editado");
-				
-				return objMensaje;
-				
-			}
-			
-			objMensaje.setMsg("No se pudo editar el país" + pais.getDescripcion());
-			
-			return objMensaje;
-			
-		}catch (Exception e) {
-			objMensaje.setMsg(e.getMessage());
-			
-			return objMensaje;
-		}
-
+		return paisService.updatePais(jdbcTemplate, id, pais);
 	}
 	
 	@DeleteMapping("/api/pais/{id}")
 	public Mensaje borrarPais(@PathVariable int id) {
-		
-		objPaisDBO.setJdbcTemplate(jdbcTemplate);
-		
-		Mensaje objMensaje = new Mensaje();
-		
-		try {
-			
-			int deletePais = objPaisDBO.borrarPais(id);
-			
-			if(deletePais == 1) {
-				
-				objMensaje.setMsg("País con el id: " + id + " borrado");
-				
-				return objMensaje;
-				
-			}else {
-				
-				objMensaje.setMsg("No se pudo borrar el país con el id: " + id);
-				return objMensaje;
-			}
-			
-		}catch (Exception e) {
-			objMensaje.setMsg(e.getMessage());
-			
-			return objMensaje;
-		}
+		return paisService.borrarPais(jdbcTemplate, id);
 	}
 
 }

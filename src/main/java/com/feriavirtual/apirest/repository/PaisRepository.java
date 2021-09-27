@@ -1,8 +1,9 @@
-package com.feriavirtual.apirest.dbo;
+package com.feriavirtual.apirest.repository;
 
 import java.sql.Types;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -10,21 +11,23 @@ import org.springframework.stereotype.Repository;
 import com.feriavirtual.apirest.models.Pais;
 
 @Repository
-public class PaisDBO {
+@Configurable
+public class PaisRepository implements IPaisRepository {
 
 	private JdbcTemplate jdbcTemplate;
 	
-	public PaisDBO() {
+	public PaisRepository() {
 		
-	}
-
-	public int crearPais(String descripcion) {
-	    return jdbcTemplate.update(
-		 "INSERT INTO PAIS (ID_PAIS, DESCRIPCION) VALUES (PAIS_SEQ.nextval, ?)", descripcion.toUpperCase());
 	}
 	
-	public List<Pais> listarPaises (){
-		
+	@Override
+	public int crearPais(String descripcion) {
+		return jdbcTemplate.update(
+				 "INSERT INTO PAIS (ID_PAIS, DESCRIPCION) VALUES (PAIS_SEQ.nextval, ?)", descripcion.toUpperCase());
+	}
+
+	@Override
+	public List<Pais> listarPaises() {
         String sql = "SELECT * FROM pais";
         
         List<Pais> listaPaises = jdbcTemplate.query(sql,
@@ -32,7 +35,8 @@ public class PaisDBO {
         
         return listaPaises;
 	}
-	
+
+	@Override
 	public Pais buscarPaisPorId(int idPais) {
 		
 		try {
@@ -60,24 +64,24 @@ public class PaisDBO {
 			
 			return objPais;
 		}
-		
-	}
-	
-	public int editarPais(int id, String descripcion) {
-	    return jdbcTemplate.update(
-		 "UPDATE PAIS SET DESCRIPCION = ? WHERE ID_PAIS = ?", descripcion.toUpperCase(), id);
-	}
-	
-	public int borrarPais(int id) {
-		
-		return jdbcTemplate.update(
-				 "DELETE FROM PAIS WHERE ID_PAIS = (?)", id);
-	}
-	
-	public JdbcTemplate getJdbcTemplate() {
-	    return jdbcTemplate;
 	}
 
+	@Override
+	public int editarPais(int id, String descripcion) {
+		return jdbcTemplate.update("UPDATE PAIS SET DESCRIPCION = ? WHERE ID_PAIS = ?", descripcion.toUpperCase(), id);
+	}
+
+	@Override
+	public int borrarPais(int id) {
+		return jdbcTemplate.update("DELETE FROM PAIS WHERE ID_PAIS = (?)", id);
+	}
+
+	@Override
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+
+	@Override
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 	    this.jdbcTemplate = jdbcTemplate;
 	}
