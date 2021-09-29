@@ -123,6 +123,14 @@ public class Usuario {
 	public void setIdEmpresa(int idEmpresa) {
 		this.idEmpresa = idEmpresa;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", apPaterno=" + apPaterno + ", apMaterno="
+				+ apMaterno + ", dni=" + dni + ", direccion=" + direccion + ", correo=" + correo + ", usuario="
+				+ usuario + ", contrasena=" + contrasena + ", idPais=" + idPais + ", idRol=" + idRol + ", idEstado="
+				+ idEstado + ", idEmpresa=" + idEmpresa + "]";
+	}
     
     
 }

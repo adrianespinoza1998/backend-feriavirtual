@@ -3,7 +3,7 @@ package com.feriavirtual.apirest.models;
 public class Productos {
 
     private int idProducto;
-    private int nombreProducto;
+    private String nombreProducto;
     private int medidaProducto;
     private int precioProducto;
     private int stockProducto;
@@ -21,11 +21,11 @@ public class Productos {
 		this.idProducto = idProducto;
 	}
 
-	public int getNombreProducto() {
+	public String getNombreProducto() {
 		return nombreProducto;
 	}
 
-	public void setNombreProducto(int nombreProducto) {
+	public void setNombreProducto(String nombreProducto) {
 		this.nombreProducto = nombreProducto;
 	}
 
@@ -60,4 +60,13 @@ public class Productos {
 	public void setIdRol(int idRol) {
 		this.idRol = idRol;
 	}
+
+	@Override
+	public String toString() {
+		return "Productos [idProducto=" + idProducto + ", nombreProducto=" + nombreProducto + ", medidaProducto="
+				+ medidaProducto + ", precioProducto=" + precioProducto + ", stockProducto=" + stockProducto
+				+ ", idRol=" + idRol + "]";
+	}
+	
+	
 }

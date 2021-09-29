@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.feriavirtual.apirest.models.Mensaje;
 import com.feriavirtual.apirest.models.Pais;
 import com.feriavirtual.apirest.repository.IPaisRepository;
-import com.feriavirtual.apirest.repository.PaisDBO;
 
 @Service
 @Configurable
