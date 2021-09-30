@@ -1,4 +1,4 @@
-package com.feriavirtual.apirest.repository;
+package com.feriavirtual.apirest.repository.impl;
 
 import java.sql.Types;
 import java.util.List;
@@ -9,14 +9,15 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.feriavirtual.apirest.models.Usuario;
+import com.feriavirtual.apirest.repository.IUsuarioRepository;
 
 @Repository
 @Configurable
-public class UsuarioRepository implements IUsuarioRepository{
+public class UsuarioRepositoryImpl implements IUsuarioRepository{
 	
 	private JdbcTemplate jdbcTemplate;
 	
-	public UsuarioRepository() {
+	public UsuarioRepositoryImpl() {
 		
 	}
 

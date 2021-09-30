@@ -1,4 +1,4 @@
-package com.feriavirtual.apirest.service;
+package com.feriavirtual.apirest.service.impl;
 
 import java.util.List;
 
@@ -10,10 +10,11 @@ import org.springframework.stereotype.Service;
 import com.feriavirtual.apirest.models.Mensaje;
 import com.feriavirtual.apirest.models.Usuario;
 import com.feriavirtual.apirest.repository.IUsuarioRepository;
+import com.feriavirtual.apirest.service.IUsuarioService;
 
 @Service
 @Configurable
-public class UsuarioService implements IUsuarioService{
+public class UsuarioServiceImpl implements IUsuarioService{
 
 	@Autowired
 	public IUsuarioRepository usuarioRepository;

@@ -1,4 +1,4 @@
-package com.feriavirtual.apirest.service;
+package com.feriavirtual.apirest.service.impl;
 
 import java.util.List;
 
@@ -10,15 +10,16 @@ import org.springframework.stereotype.Service;
 import com.feriavirtual.apirest.models.Mensaje;
 import com.feriavirtual.apirest.models.Pais;
 import com.feriavirtual.apirest.repository.IPaisRepository;
+import com.feriavirtual.apirest.service.IPaisService;
 
 @Service
 @Configurable
-public class PaisService implements IPaisService {
+public class PaisServiceImpl implements IPaisService {
 	
 	@Autowired
 	private IPaisRepository paisRepository;
 	
-	public PaisService() {
+	public PaisServiceImpl() {
 		
 	}
 
