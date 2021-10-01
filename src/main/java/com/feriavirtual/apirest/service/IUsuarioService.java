@@ -18,4 +18,6 @@ public interface IUsuarioService {
 	Mensaje updateUsuario(JdbcTemplate jdbcTemplate, Usuario usuario, int id);
 	
 	Mensaje borrarUsuario(JdbcTemplate jdbcTemplate, int id);
+	
+	Usuario verificarUsuario (JdbcTemplate jdbcTemplate, Usuario usuario);
 }

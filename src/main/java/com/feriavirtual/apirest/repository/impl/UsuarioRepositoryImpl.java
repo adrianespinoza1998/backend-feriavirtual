@@ -98,4 +98,33 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository{
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
+	@Override
+	public Usuario verificarUsuario(String correo, String contrasena) {
+		try {
+			String sql = "SELECT * FROM USUARIO WHERE CORREO = ? AND CONTRASENA = ?";
+
+			@SuppressWarnings("deprecation")
+			List<Usuario> buscarUsuario = jdbcTemplate.query(sql,
+			        new Object[] { correo, contrasena },
+			        new BeanPropertyRowMapper<Usuario>(Usuario.class));
+			
+			if(buscarUsuario.size()>0) {
+				Usuario objUsuario = buscarUsuario.get(0);
+				
+				return objUsuario;
+
+			}else {
+				
+				return new Usuario();
+			}
+		}catch (Exception e) {
+			Usuario objUsuario = new Usuario();
+			
+			objUsuario.setIdUsuario(0);
+			objUsuario.setNombre(e.getMessage());
+			
+			return objUsuario;
+		}
+	}
+
 }

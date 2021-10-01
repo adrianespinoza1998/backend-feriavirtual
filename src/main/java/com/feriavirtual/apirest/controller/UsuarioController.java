@@ -23,32 +23,38 @@ public class UsuarioController {
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	private IUsuarioService usuarioSevice;
+	private IUsuarioService usuarioService;
 	
 	@PostMapping("/api/usuario")
 	public Mensaje crearUsuario(@RequestBody Usuario usuario){		
-		return usuarioSevice.crearUsuario(jdbcTemplate, usuario);
+		return usuarioService.crearUsuario(jdbcTemplate, usuario);
+	}
+	
+	@PostMapping("/api/auth")
+	public Usuario verificarUsuario(@RequestBody Usuario usuario) {
+		return usuarioService.verificarUsuario(jdbcTemplate, usuario);
+		
 	}
 	
 	@GetMapping("/api/usuario/{id}")
 	public List<Usuario> listarUsuarios(@PathVariable int id){
-		return usuarioSevice.listarUsuarios(jdbcTemplate, id);
+		return usuarioService.listarUsuarios(jdbcTemplate, id);
 	}
 	
 	@GetMapping("/api/usuario/buscar/{id}")
 	public Usuario getUsuarioById(@PathVariable int id) {
-		return usuarioSevice.buscarUsuarioPorId(jdbcTemplate, id);
+		return usuarioService.buscarUsuarioPorId(jdbcTemplate, id);
 	}
 	
 	@PutMapping("/api/usuario/{id}")
 	public Mensaje updateUsuario(@PathVariable int id,
 			@RequestBody Usuario usuario) {
-		return usuarioSevice.updateUsuario(jdbcTemplate, usuario, id);
+		return usuarioService.updateUsuario(jdbcTemplate, usuario, id);
 	}
 	
 	@DeleteMapping("/api/usuario/{id}")
 	public Mensaje borrarUsuario(@PathVariable int id) {
-		return usuarioSevice.borrarUsuario(jdbcTemplate, id);
+		return usuarioService.borrarUsuario(jdbcTemplate, id);
 	}
 
 }

@@ -135,4 +135,11 @@ public class UsuarioServiceImpl implements IUsuarioService{
 			return objMensaje;
 		}
 	}
+
+	@Override
+	public Usuario verificarUsuario(JdbcTemplate jdbcTemplate, Usuario usuario) {
+		usuarioRepository.setJdbcTemplate(jdbcTemplate);
+		
+		return usuarioRepository.verificarUsuario(usuario.getCorreo().toUpperCase(), usuario.getContrasena());
+	}
 }
