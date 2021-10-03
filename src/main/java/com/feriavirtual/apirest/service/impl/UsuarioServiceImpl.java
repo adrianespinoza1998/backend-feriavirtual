@@ -150,11 +150,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		if(verificarPassword(usuario.getContrasena(), buscarUsuario.getContrasena())){
 			return buscarUsuario;
 		}else{
-			Usuario objUsuario = new Usuario();
-			objUsuario.setNombre(buscarUsuario.getContrasena());
-			objUsuario.setContrasena(usuario.getContrasena());
-
-			return objUsuario;
+			return new Usuario();
 		}
 	}
 
