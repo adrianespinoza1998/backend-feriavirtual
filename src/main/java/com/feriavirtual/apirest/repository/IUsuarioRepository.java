@@ -20,7 +20,7 @@ public interface IUsuarioRepository {
 	
 	int borrarUsuario(int idUsuario);
 	
-	Usuario verificarUsuario(String correo, String contrasena);
+	Usuario verificarUsuario(String correo);
 	
 	JdbcTemplate getJdbcTemplate();
 	

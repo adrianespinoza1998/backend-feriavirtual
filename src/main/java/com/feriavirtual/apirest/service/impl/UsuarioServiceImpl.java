@@ -2,6 +2,7 @@ package com.feriavirtual.apirest.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -30,10 +31,12 @@ public class UsuarioServiceImpl implements IUsuarioService{
 			
 			if(usuario.getNombre()!=null || !usuario.getNombre().equals("")) {
 
+				String contrasena = encriptarPassword(usuario.getContrasena());
+
 				int crearUsuario = usuarioRepository.crearUsuario(usuario.getNombre().toUpperCase(), 
 						usuario.getApPaterno().toUpperCase(), usuario.getApMaterno().toUpperCase(), 
 						usuario.getDni().toUpperCase(), usuario.getDireccion().toUpperCase(), 
-						usuario.getCorreo().toUpperCase(), usuario.getUsuario(), usuario.getContrasena(),
+						usuario.getCorreo().toUpperCase(), usuario.getUsuario(), contrasena,
 						usuario.getIdPais(), usuario.getIdRol(), usuario.getIdEstado(), usuario.getIdEmpresa());
 
 				if(crearUsuario == 1) {
@@ -81,10 +84,12 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		Mensaje objMensaje = new Mensaje();
 		
 		try {
+			String contrasena = encriptarPassword(usuario.getContrasena());
+
 			int editarUsuario = usuarioRepository.editarUsuario(usuario.getNombre().toUpperCase(), 
 					usuario.getApPaterno().toUpperCase(), usuario.getApMaterno().toUpperCase(), 
 					usuario.getDni().toUpperCase(), usuario.getDireccion().toUpperCase(), 
-					usuario.getCorreo().toUpperCase(), usuario.getUsuario(), usuario.getContrasena(),
+					usuario.getCorreo().toUpperCase(), usuario.getUsuario(), contrasena,
 					usuario.getIdPais(), usuario.getIdRol(), usuario.getIdEstado(), usuario.getIdEmpresa(), id);
 			
 			if(editarUsuario == 1) {
@@ -140,6 +145,25 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	public Usuario verificarUsuario(JdbcTemplate jdbcTemplate, Usuario usuario) {
 		usuarioRepository.setJdbcTemplate(jdbcTemplate);
 		
-		return usuarioRepository.verificarUsuario(usuario.getCorreo().toUpperCase(), usuario.getContrasena());
+		Usuario buscarUsuario= usuarioRepository.verificarUsuario(usuario.getCorreo().toUpperCase());
+
+		if(verificarPassword(usuario.getContrasena(), buscarUsuario.getContrasena())){
+			return buscarUsuario;
+		}else{
+			Usuario objUsuario = new Usuario();
+			objUsuario.setNombre(buscarUsuario.getContrasena());
+			objUsuario.setContrasena(usuario.getContrasena());
+
+			return objUsuario;
+		}
+	}
+
+	private String encriptarPassword(String password){
+		String result = DigestUtils.sha256Hex(password);
+		return result;
+	}
+
+	private boolean verificarPassword(String password, String hex){
+		return DigestUtils.sha256Hex(password).equals(hex);
 	}
 }

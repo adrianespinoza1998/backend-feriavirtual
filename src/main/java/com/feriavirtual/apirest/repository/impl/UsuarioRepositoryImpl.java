@@ -89,23 +89,13 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository{
 	}
 
 	@Override
-	public JdbcTemplate getJdbcTemplate() {
-		return jdbcTemplate;
-	}
-
-	@Override
-	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
-
-	@Override
-	public Usuario verificarUsuario(String correo, String contrasena) {
+	public Usuario verificarUsuario(String correo) {
 		try {
-			String sql = "SELECT * FROM USUARIO WHERE CORREO = ? AND CONTRASENA = ?";
+			String sql = "SELECT * FROM USUARIO WHERE CORREO = ?";
 
 			@SuppressWarnings("deprecation")
 			List<Usuario> buscarUsuario = jdbcTemplate.query(sql,
-			        new Object[] { correo, contrasena },
+			        new Object[] { correo },
 			        new BeanPropertyRowMapper<Usuario>(Usuario.class));
 			
 			if(buscarUsuario.size()>0) {
@@ -125,6 +115,17 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository{
 			
 			return objUsuario;
 		}
+	}
+
+
+	@Override
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+
+	@Override
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
 	}
 
 }
