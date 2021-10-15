@@ -34,4 +34,12 @@ public class SubastasTransportes {
 		this.idTransporte = idTransporte;
 	}
 
+	@Override
+	public String toString() {
+		return "SubastasTransportes{" +
+				"idSubastasTr=" + idSubastasTr +
+				", idSubastas=" + idSubastas +
+				", idTransporte=" + idTransporte +
+				'}';
+	}
 }

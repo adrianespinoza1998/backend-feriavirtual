@@ -2,15 +2,14 @@ package com.feriavirtual.apirest.models;
 
 public class Pagos {
 
-    private int idPagos;
-    private int idBanco;
-    private int idRol;
-    private int idSolicitudVenta;
-    private int idMoneda;
-    
-    public Pagos() {
-    	
-    }
+	private  int idPagos;
+	private  int idSubastas;
+	private  int monto;
+	private  int tarjeta;
+	private  int idMoneda;
+
+	public Pagos() {
+	}
 
 	public int getIdPagos() {
 		return idPagos;
@@ -20,28 +19,28 @@ public class Pagos {
 		this.idPagos = idPagos;
 	}
 
-	public int getIdBanco() {
-		return idBanco;
+	public int getIdSubastas() {
+		return idSubastas;
 	}
 
-	public void setIdBanco(int idBanco) {
-		this.idBanco = idBanco;
+	public void setIdSubastas(int idSubastas) {
+		this.idSubastas = idSubastas;
 	}
 
-	public int getIdRol() {
-		return idRol;
+	public int getMonto() {
+		return monto;
 	}
 
-	public void setIdRol(int idRol) {
-		this.idRol = idRol;
+	public void setMonto(int monto) {
+		this.monto = monto;
 	}
 
-	public int getIdSolicitudVenta() {
-		return idSolicitudVenta;
+	public int getTarjeta() {
+		return tarjeta;
 	}
 
-	public void setIdSolicitudVenta(int idSolicitudVenta) {
-		this.idSolicitudVenta = idSolicitudVenta;
+	public void setTarjeta(int tarjeta) {
+		this.tarjeta = tarjeta;
 	}
 
 	public int getIdMoneda() {
@@ -50,5 +49,16 @@ public class Pagos {
 
 	public void setIdMoneda(int idMoneda) {
 		this.idMoneda = idMoneda;
+	}
+
+	@Override
+	public String toString() {
+		return "Pagos{" +
+				"idPagos=" + idPagos +
+				", idSubastas=" + idSubastas +
+				", monto=" + monto +
+				", tarjeta=" + tarjeta +
+				", idMoneda=" + idMoneda +
+				'}';
 	}
 }

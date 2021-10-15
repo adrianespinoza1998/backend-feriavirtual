@@ -3,14 +3,13 @@ package com.feriavirtual.apirest.models;
 public class Transportes {
 
     private int idTransporte;
-    private int marca;
+	private int idTipoTransporte;
+    private String marca;
     private int capacidad;
     private int peso;
-    private int idTipoTransporte;
-    private int idRol;
+    private int idUsuario;
     
     public Transportes() {
-    	
     }
 
 	public int getIdTransporte() {
@@ -21,11 +20,19 @@ public class Transportes {
 		this.idTransporte = idTransporte;
 	}
 
-	public int getMarca() {
+	public int getIdTipoTransporte() {
+		return idTipoTransporte;
+	}
+
+	public void setIdTipoTransporte(int idTipoTransporte) {
+		this.idTipoTransporte = idTipoTransporte;
+	}
+
+	public String getMarca() {
 		return marca;
 	}
 
-	public void setMarca(int marca) {
+	public void setMarca(String marca) {
 		this.marca = marca;
 	}
 
@@ -45,20 +52,23 @@ public class Transportes {
 		this.peso = peso;
 	}
 
-	public int getIdTipoTransporte() {
-		return idTipoTransporte;
+	public int getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setIdTipoTransporte(int idTipoTransporte) {
-		this.idTipoTransporte = idTipoTransporte;
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
-	public int getIdRol() {
-		return idRol;
+	@Override
+	public String toString() {
+		return "Transportes{" +
+				"idTransporte=" + idTransporte +
+				", idTipoTransporte=" + idTipoTransporte +
+				", marca='" + marca + '\'' +
+				", capacidad=" + capacidad +
+				", peso=" + peso +
+				", idUsuario=" + idUsuario +
+				'}';
 	}
-
-	public void setIdRol(int idRol) {
-		this.idRol = idRol;
-	}
-
 }

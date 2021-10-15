@@ -15,5 +15,11 @@ public class Mensaje {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Mensaje{" +
+				"msg='" + msg + '\'' +
+				'}';
+	}
 }

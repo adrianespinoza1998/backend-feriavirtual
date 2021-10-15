@@ -25,5 +25,12 @@ public class Pais {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Pais{" +
+				"idPais=" + idPais +
+				", descripcion='" + descripcion + '\'' +
+				'}';
+	}
 }

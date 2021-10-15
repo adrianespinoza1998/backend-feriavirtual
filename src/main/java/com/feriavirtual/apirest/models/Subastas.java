@@ -1,15 +1,13 @@
 package com.feriavirtual.apirest.models;
 
 public class Subastas {
-	
-    private int idSubastas;
-    private int idTipoVenta;
-    private int idRol;
-    private int idSolicitudVenta;
-    
-    public Subastas() {
-    	
-    }
+
+	private  int idSubastas;
+	private  int idUsuario;
+	private  int idSolicitudProductos;
+
+	public Subastas() {
+	}
 
 	public int getIdSubastas() {
 		return idSubastas;
@@ -19,28 +17,28 @@ public class Subastas {
 		this.idSubastas = idSubastas;
 	}
 
-	public int getIdTipoVenta() {
-		return idTipoVenta;
+	public int getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setIdTipoVenta(int idTipoVenta) {
-		this.idTipoVenta = idTipoVenta;
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
-	public int getIdRol() {
-		return idRol;
+	public int getIdSolicitudProductos() {
+		return idSolicitudProductos;
 	}
 
-	public void setIdRol(int idRol) {
-		this.idRol = idRol;
+	public void setIdSolicitudProductos(int idSolicitudProductos) {
+		this.idSolicitudProductos = idSolicitudProductos;
 	}
 
-	public int getIdSolicitudVenta() {
-		return idSolicitudVenta;
+	@Override
+	public String toString() {
+		return "Subastas{" +
+				"idSubastas=" + idSubastas +
+				", idUsuario=" + idUsuario +
+				", idSolicitudProductos=" + idSolicitudProductos +
+				'}';
 	}
-
-	public void setIdSolicitudVenta(int idSolicitudVenta) {
-		this.idSolicitudVenta = idSolicitudVenta;
-	}
-    
 }

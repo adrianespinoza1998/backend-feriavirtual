@@ -25,4 +25,11 @@ public class EstadoSolicitud {
 		this.descripcion = descripcion;
 	}
 
+	@Override
+	public String toString() {
+		return "EstadoSolicitud{" +
+				"idEstadoSolicitud=" + idEstadoSolicitud +
+				", descripcion='" + descripcion + '\'' +
+				'}';
+	}
 }

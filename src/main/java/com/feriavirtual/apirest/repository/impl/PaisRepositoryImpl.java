@@ -1,11 +1,14 @@
 package com.feriavirtual.apirest.repository.impl;
 
 import java.sql.Types;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 import com.feriavirtual.apirest.models.Pais;
@@ -16,6 +19,8 @@ import com.feriavirtual.apirest.repository.IPaisRepository;
 public class PaisRepositoryImpl implements IPaisRepository {
 
 	private JdbcTemplate jdbcTemplate;
+
+	private SimpleJdbcCall simpleJdbcCallRefCursor;
 	
 	public PaisRepositoryImpl() {
 		
@@ -29,12 +34,18 @@ public class PaisRepositoryImpl implements IPaisRepository {
 
 	@Override
 	public List<Pais> listarPaises() {
-        String sql = "SELECT * FROM pais";
-        
-        List<Pais> listaPaises = jdbcTemplate.query(sql,
-                BeanPropertyRowMapper.newInstance(Pais.class));
-        
-        return listaPaises;
+		simpleJdbcCallRefCursor = new SimpleJdbcCall(jdbcTemplate)
+				.withProcedureName("get_paises")
+				.returningResultSet("o_c_book",
+						BeanPropertyRowMapper.newInstance(Pais.class));
+
+		Map out = simpleJdbcCallRefCursor.execute();
+
+		if (out == null) {
+			return Collections.emptyList();
+		} else {
+			return (List) out.get("o_c_book");
+		}
 	}
 
 	@Override

@@ -43,7 +43,7 @@ public class ProductoRepositoryImpl implements IProductoRepository{
 
 	@Override
 	public Productos buscarProductoPorId(int idProducto) {
-		try {
+		/*try {
 			String sql = "SELECT * FROM PRODUCTOS WHERE ID_PRODUCTO = ?";
 			
 			List<Productos> buscarProductos = jdbcTemplate.query(sql,
@@ -67,7 +67,8 @@ public class ProductoRepositoryImpl implements IProductoRepository{
 			objProductos.setNombreProducto(e.getMessage());
 			
 			return objProductos;
-		}
+		}*/
+		return null;
 	}
 
 	@Override

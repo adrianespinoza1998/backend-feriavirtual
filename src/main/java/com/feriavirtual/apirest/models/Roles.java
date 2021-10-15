@@ -24,4 +24,12 @@ public class Roles {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	@Override
+	public String toString() {
+		return "Roles{" +
+				"idRol=" + idRol +
+				", descripcion='" + descripcion + '\'' +
+				'}';
+	}
 }

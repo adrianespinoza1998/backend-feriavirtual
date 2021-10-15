@@ -1,17 +1,15 @@
 package com.feriavirtual.apirest.models;
 
 public class Contrato {
-	
+
 	private int idContrato;
-    private String descripcion;
-    private int idEmpresa;
-    private int idRol;
-    
-    public Contrato() {
-    	
-    }
-    
-    public int getIdContrato() {
+	private int firmado;
+	private int idUsuario;
+
+	public Contrato() {
+	}
+
+	public int getIdContrato() {
 		return idContrato;
 	}
 
@@ -19,28 +17,28 @@ public class Contrato {
 		this.idContrato = idContrato;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	public int getFirmado() {
+		return firmado;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setFirmado(int firmado) {
+		this.firmado = firmado;
 	}
 
-	public int getIdEmpresa() {
-		return idEmpresa;
+	public int getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setIdEmpresa(int idEmpresa) {
-		this.idEmpresa = idEmpresa;
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
-	public int getIdRol() {
-		return idRol;
+	@Override
+	public String toString() {
+		return "Contrato{" +
+				"idContrato=" + idContrato +
+				", firmado=" + firmado +
+				", idUsuario=" + idUsuario +
+				'}';
 	}
-
-	public void setIdRol(int idRol) {
-		this.idRol = idRol;
-	}
-
 }

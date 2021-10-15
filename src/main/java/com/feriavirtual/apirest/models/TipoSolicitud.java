@@ -25,4 +25,11 @@ public class TipoSolicitud {
 		this.descripcion = descripcion;
 	}
 
+	@Override
+	public String toString() {
+		return "TipoSolicitud{" +
+				"idTipoSolicitud=" + idTipoSolicitud +
+				", descripcion=" + descripcion +
+				'}';
+	}
 }

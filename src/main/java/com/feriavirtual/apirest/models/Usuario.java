@@ -8,16 +8,16 @@ public class Usuario {
     private String apMaterno;
     private String dni;
     private String direccion;
+	private String codPostal;
     private String correo;
     private String usuario;
     private String contrasena;
     private int idPais;
     private int idRol;
     private int idEstado;
-    private int idEmpresa;
+    private int terminosCondiciones;
     
     public Usuario() {
-    	
     }
 
 	public int getIdUsuario() {
@@ -116,21 +116,39 @@ public class Usuario {
 		this.idEstado = idEstado;
 	}
 
-	public int getIdEmpresa() {
-		return idEmpresa;
+	public int getTerminosCondiciones() {
+		return terminosCondiciones;
 	}
 
-	public void setIdEmpresa(int idEmpresa) {
-		this.idEmpresa = idEmpresa;
+	public void setTerminosCondiciones(int terminosCondiciones) {
+		this.terminosCondiciones = terminosCondiciones;
+	}
+
+	public String getCodPostal() {
+		return codPostal;
+	}
+
+	public void setCodPostal(String codPostal) {
+		this.codPostal = codPostal;
 	}
 
 	@Override
 	public String toString() {
-		return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", apPaterno=" + apPaterno + ", apMaterno="
-				+ apMaterno + ", dni=" + dni + ", direccion=" + direccion + ", correo=" + correo + ", usuario="
-				+ usuario + ", contrasena=" + contrasena + ", idPais=" + idPais + ", idRol=" + idRol + ", idEstado="
-				+ idEstado + ", idEmpresa=" + idEmpresa + "]";
+		return "Usuario{" +
+				"idUsuario=" + idUsuario +
+				", nombre='" + nombre + '\'' +
+				", apPaterno='" + apPaterno + '\'' +
+				", apMaterno='" + apMaterno + '\'' +
+				", dni='" + dni + '\'' +
+				", direccion='" + direccion + '\'' +
+				", codPostal='" + codPostal + '\'' +
+				", correo='" + correo + '\'' +
+				", usuario='" + usuario + '\'' +
+				", contrasena='" + contrasena + '\'' +
+				", idPais=" + idPais +
+				", idRol=" + idRol +
+				", idEstado=" + idEstado +
+				", terminosCondiciones=" + terminosCondiciones +
+				'}';
 	}
-    
-    
 }

@@ -1,6 +1,7 @@
 package com.feriavirtual.apirest.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -8,17 +9,17 @@ import com.feriavirtual.apirest.models.Usuario;
 
 public interface IUsuarioRepository {
 	
-	int crearUsuario(String nombre, String apPaterno, String apMaterno, String dni, String direccion, 
-			String correo, String usuario, String contrasena, int idPais, int idRol, int idEstado, int idEmpresa);
+	Map crearUsuario(String nombre, String apPaterno, String apMaterno, String dni, String direccion, String codPostal,
+					 String correo, String usuario, String contrasena, int idPais, int idRol, int idEstado, int terminosCondiciones);
 	
-	List<Usuario> listarUsuarios(int idEmpresa);
+	List<Usuario> listarUsuarios(int idEstado);
 	
 	Usuario buscarUsuarioPorId(int idUsuario);
 	
-	int editarUsuario(String nombre, String apPaterno, String apMaterno, String dni, String direccion, 
-			String correo, String usuario, String contrasena, int idPais, int idRol, int idEstado, int idEmpresa, int idUsuario);
+	Map editarUsuario(String nombre, String apPaterno, String apMaterno, String dni, String direccion, String codPostal,
+			String correo, String usuario, String contrasena, int idPais, int idRol, int termCond, int idUsuario);
 	
-	int borrarUsuario(int idUsuario);
+	Map borrarUsuario(int idUsuario);
 	
 	Usuario verificarUsuario(String correo);
 	

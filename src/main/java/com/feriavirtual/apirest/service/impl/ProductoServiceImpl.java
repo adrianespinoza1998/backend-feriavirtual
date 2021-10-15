@@ -25,7 +25,7 @@ public class ProductoServiceImpl implements IProductoService{
 	
 	@Override
 	public Mensaje crearProducto(JdbcTemplate jdbcTemplate, Productos producto) {
-		productoRepository.setJdbcTemplate(jdbcTemplate);
+		/*productoRepository.setJdbcTemplate(jdbcTemplate);
 		
 		Mensaje mensaje = new Mensaje();
 		
@@ -57,7 +57,9 @@ public class ProductoServiceImpl implements IProductoService{
 			mensaje.setMsg(e.getMessage());
 			
 			return mensaje;
-		}
+		}*/
+
+		return null;
 	}
 
 	@Override
@@ -77,7 +79,7 @@ public class ProductoServiceImpl implements IProductoService{
 	@Override
 	public Mensaje updateProducto(JdbcTemplate jdbcTemplate, Productos producto, int id) {
 		
-		productoRepository.setJdbcTemplate(jdbcTemplate);
+		/*productoRepository.setJdbcTemplate(jdbcTemplate);
 		
 		Mensaje objMensaje = new Mensaje();
 		
@@ -101,7 +103,9 @@ public class ProductoServiceImpl implements IProductoService{
 			objMensaje.setMsg(e.getMessage());
 			
 			return objMensaje;
-		}
+		}*/
+
+		return null;
 	}
 
 	@Override

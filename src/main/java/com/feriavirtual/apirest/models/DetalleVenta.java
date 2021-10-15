@@ -2,53 +2,53 @@ package com.feriavirtual.apirest.models;
 
 public class DetalleVenta {
 
-	private int idDetalleVenta;
-    private int cantidadDetalleVenta;
-    private int precioDetalleVenta;
-    private int idSolicitudVenta;
-    private int idProducto;
-    
-    public DetalleVenta() {
-    	
-    }
-    
-    public int getIdDetalleVenta() {
-		return idDetalleVenta;
+	private  int id_detalle_venta;
+	private  int id_producto;
+	private  int cantidad;
+	private  int precio;
+
+	public DetalleVenta() {
 	}
 
-	public void setIdDetalleVenta(int idDetalleVenta) {
-		this.idDetalleVenta = idDetalleVenta;
+	public int getId_detalle_venta() {
+		return id_detalle_venta;
 	}
 
-	public int getCantidadDetalleVenta() {
-		return cantidadDetalleVenta;
+	public void setId_detalle_venta(int id_detalle_venta) {
+		this.id_detalle_venta = id_detalle_venta;
 	}
 
-	public void setCantidadDetalleVenta(int cantidadDetalleVenta) {
-		this.cantidadDetalleVenta = cantidadDetalleVenta;
+	public int getId_producto() {
+		return id_producto;
 	}
 
-	public int getPrecioDetalleVenta() {
-		return precioDetalleVenta;
+	public void setId_producto(int id_producto) {
+		this.id_producto = id_producto;
 	}
 
-	public void setPrecioDetalleVenta(int precioDetalleVenta) {
-		this.precioDetalleVenta = precioDetalleVenta;
+	public int getCantidad() {
+		return cantidad;
 	}
 
-	public int getIdSolicitudVenta() {
-		return idSolicitudVenta;
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 
-	public void setIdSolicitudVenta(int idSolicitudVenta) {
-		this.idSolicitudVenta = idSolicitudVenta;
+	public int getPrecio() {
+		return precio;
 	}
 
-	public int getIdProducto() {
-		return idProducto;
+	public void setPrecio(int precio) {
+		this.precio = precio;
 	}
 
-	public void setIdProducto(int idProducto) {
-		this.idProducto = idProducto;
+	@Override
+	public String toString() {
+		return "DetalleVenta{" +
+				"id_detalle_venta=" + id_detalle_venta +
+				", id_producto=" + id_producto +
+				", cantidad=" + cantidad +
+				", precio=" + precio +
+				'}';
 	}
 }

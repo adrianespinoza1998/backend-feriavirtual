@@ -25,4 +25,11 @@ public class TipoTransporte {
 		this.descripcion = descripcion;
 	}
 
+	@Override
+	public String toString() {
+		return "TipoTransporte{" +
+				"idTipoTransporte=" + idTipoTransporte +
+				", descripcion=" + descripcion +
+				'}';
+	}
 }

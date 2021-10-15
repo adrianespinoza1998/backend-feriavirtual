@@ -2,16 +2,14 @@ package com.feriavirtual.apirest.models;
 
 public class Productos {
 
-    private int idProducto;
-    private String nombreProducto;
-    private int medidaProducto;
-    private int precioProducto;
-    private int stockProducto;
-    private int idRol;
-    
-    public Productos() {
-    	
-    }
+	private  int idProducto;
+	private  int kilos;
+	private  int precio;
+	private  int stock;
+	private  int idUsuario;
+
+	public Productos() {
+	}
 
 	public int getIdProducto() {
 		return idProducto;
@@ -21,52 +19,46 @@ public class Productos {
 		this.idProducto = idProducto;
 	}
 
-	public String getNombreProducto() {
-		return nombreProducto;
+	public int getKilos() {
+		return kilos;
 	}
 
-	public void setNombreProducto(String nombreProducto) {
-		this.nombreProducto = nombreProducto;
+	public void setKilos(int kilos) {
+		this.kilos = kilos;
 	}
 
-	public int getMedidaProducto() {
-		return medidaProducto;
+	public int getPrecio() {
+		return precio;
 	}
 
-	public void setMedidaProducto(int medidaProducto) {
-		this.medidaProducto = medidaProducto;
+	public void setPrecio(int precio) {
+		this.precio = precio;
 	}
 
-	public int getPrecioProducto() {
-		return precioProducto;
+	public int getStock() {
+		return stock;
 	}
 
-	public void setPrecioProducto(int precioProducto) {
-		this.precioProducto = precioProducto;
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
-	public int getStockProducto() {
-		return stockProducto;
+	public int getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setStockProducto(int stockProducto) {
-		this.stockProducto = stockProducto;
-	}
-
-	public int getIdRol() {
-		return idRol;
-	}
-
-	public void setIdRol(int idRol) {
-		this.idRol = idRol;
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	@Override
 	public String toString() {
-		return "Productos [idProducto=" + idProducto + ", nombreProducto=" + nombreProducto + ", medidaProducto="
-				+ medidaProducto + ", precioProducto=" + precioProducto + ", stockProducto=" + stockProducto
-				+ ", idRol=" + idRol + "]";
+		return "Productos{" +
+				"idProducto=" + idProducto +
+				", kilos=" + kilos +
+				", precio=" + precio +
+				", stock=" + stock +
+				", idUsuario=" + idUsuario +
+				'}';
 	}
-	
-	
 }

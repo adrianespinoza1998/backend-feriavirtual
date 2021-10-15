@@ -1,5 +1,6 @@
 package com.feriavirtual.apirest.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class UsuarioController {
 	private IUsuarioService usuarioService;
 	
 	@PostMapping("/api/usuario")
-	public Mensaje crearUsuario(@RequestBody Usuario usuario){		
+	public Mensaje crearUsuario(@RequestBody Usuario usuario) throws SQLException {
 		return usuarioService.crearUsuario(jdbcTemplate, usuario);
 	}
 	
