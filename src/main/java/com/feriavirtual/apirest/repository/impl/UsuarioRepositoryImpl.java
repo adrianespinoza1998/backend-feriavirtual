@@ -165,9 +165,14 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository{
 		Map out = simpleJdbcCall.execute(in);
 
 		List<Usuario> listaUsuario = (List<Usuario>) out.get("out_pc_get_usuario");
-		Usuario objUsuario = listaUsuario.get(0);
 
-		return objUsuario;
+		if(listaUsuario.size()>0){
+			Usuario objUsuario = listaUsuario.get(0);
+
+			return objUsuario;
+		}else{
+			return new Usuario();
+		}
 	}
 
 
