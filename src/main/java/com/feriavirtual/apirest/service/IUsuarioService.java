@@ -10,14 +10,14 @@ import com.feriavirtual.apirest.models.Usuario;
 
 public interface IUsuarioService {
 
-	Mensaje crearUsuario(JdbcTemplate jdbcTemplate, Usuario usuario) throws SQLException;
+	Mensaje crearUsuario(JdbcTemplate jdbcTemplate, Usuario usuario);
 	
 	List<Usuario> listarUsuarios(JdbcTemplate jdbcTemplate, int idEstado);
 	
 	Usuario buscarUsuarioPorId(JdbcTemplate jdbcTemplate, int id);
 	
 	Mensaje updateUsuario(JdbcTemplate jdbcTemplate, Usuario usuario, int id);
-	
+
 	Mensaje borrarUsuario(JdbcTemplate jdbcTemplate, int id);
 	
 	Usuario verificarUsuario (JdbcTemplate jdbcTemplate, Usuario usuario);

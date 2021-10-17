@@ -1,7 +1,6 @@
 package com.feriavirtual.apirest.service.impl;
 
 import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +23,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	public IUsuarioRepository usuarioRepository;
 	
 	@Override
-	public Mensaje crearUsuario(JdbcTemplate jdbcTemplate, Usuario usuario) throws SQLException {
+	public Mensaje crearUsuario(JdbcTemplate jdbcTemplate, Usuario usuario) {
 		
 		usuarioRepository.setJdbcTemplate(jdbcTemplate);
 		
@@ -55,8 +54,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 				mensaje.setMsg("No se creo el usuario " + usuario.getNombre() + ", error: " + (String) crearUsuario.get("OUT_GLOSA"));
 			}else {
 				 mensaje.setMsg("Usuario vacío ," + usuario.toString());
-				 
-				 return mensaje;
+
 			}
 			
 			return mensaje;
@@ -100,7 +98,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 			if(verUpdUsuario.intValue() == 0){
 				objMensaje.setMsg("Usuario con el id: " + id + " actualizado");
 			}else {
-				objMensaje.setMsg("No se pudo borrar el usuario con el id: " + id);
+				objMensaje.setMsg("No se pudo actaulizar el usuario con el id: " + id);
 			}
 
 			return objMensaje;
@@ -137,6 +135,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 
 		}catch (Exception e) {
 			objMensaje.setMsg(e.getMessage());
+			e.printStackTrace();
 			
 			return objMensaje;
 		}

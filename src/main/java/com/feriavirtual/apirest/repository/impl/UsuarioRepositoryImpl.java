@@ -1,6 +1,5 @@
 package com.feriavirtual.apirest.repository.impl;
 
-import java.sql.Types;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
@@ -94,10 +92,14 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository{
 		Map out = simpleJdbcCall.execute(in);
 
 		List<Usuario> listaUsuario = (List<Usuario>) out.get("out_nombre_cursor");
-		Usuario objUsuario = listaUsuario.get(0);
-		objUsuario.setIdUsuario(idUsuario);
 
-		return objUsuario;
+		if(listaUsuario.size()>0){
+			Usuario objUsuario = listaUsuario.get(0);
+
+			return objUsuario;
+		}else{
+			return new Usuario();
+		}
 	}
 
 	@Override
@@ -151,11 +153,6 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository{
 				.withProcedureName("sp_verificar_usuario")
 				.returningResultSet("out_pc_get_usuario",
 						BeanPropertyRowMapper.newInstance(Usuario.class));
-
-		simpleJdbcCall.declareParameters(
-				new SqlParameter("in_correo", Types.VARCHAR),
-				new SqlParameter("out_glosa", Types.VARCHAR),
-				new SqlParameter("out_estado",Types.INTEGER));
 
 		SqlParameterSource in = new MapSqlParameterSource()
 				.addValue("in_correo", correo)
