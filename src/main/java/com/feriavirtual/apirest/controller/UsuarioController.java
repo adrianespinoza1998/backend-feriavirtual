@@ -1,8 +1,8 @@
 package com.feriavirtual.apirest.controller;
 
-import java.sql.SQLException;
 import java.util.List;
 
+import com.feriavirtual.apirest.models.UsuarioJoin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,7 +30,7 @@ public class UsuarioController {
 	private IUsuarioService usuarioService;
 	
 	@PostMapping("/api/usuario")
-	public Mensaje crearUsuario(@RequestBody Usuario usuario) throws SQLException {
+	public Mensaje crearUsuario(@RequestBody Usuario usuario) {
 		return usuarioService.crearUsuario(jdbcTemplate, usuario);
 	}
 	
@@ -41,7 +41,7 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/api/usuario/{id}")
-	public List<Usuario> listarUsuarios(@PathVariable int id){
+	public List<UsuarioJoin> listarUsuarios(@PathVariable int id){
 		return usuarioService.listarUsuarios(jdbcTemplate, id);
 	}
 	

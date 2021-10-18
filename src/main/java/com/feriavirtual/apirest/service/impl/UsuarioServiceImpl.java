@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+import com.feriavirtual.apirest.models.UsuarioJoin;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -68,7 +69,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	}
 
 	@Override
-	public List<Usuario> listarUsuarios(JdbcTemplate jdbcTemplate, int idEstado) {
+	public List<UsuarioJoin> listarUsuarios(JdbcTemplate jdbcTemplate, int idEstado) {
 		usuarioRepository.setJdbcTemplate(jdbcTemplate);
 		
 		return usuarioRepository.listarUsuarios(idEstado);

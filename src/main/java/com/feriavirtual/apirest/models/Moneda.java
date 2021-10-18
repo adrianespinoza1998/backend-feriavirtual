@@ -4,6 +4,7 @@ public class Moneda {
 
     private int idMoneda;
     private String descripcion;
+	private String sigla;
     
     public Moneda() {
     	
@@ -25,11 +26,20 @@ public class Moneda {
 		this.descripcion = descripcion;
 	}
 
+	public String getSigla() {
+		return sigla;
+	}
+
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
+	}
+
 	@Override
 	public String toString() {
 		return "Moneda{" +
 				"idMoneda=" + idMoneda +
 				", descripcion='" + descripcion + '\'' +
+				", sigla='" + sigla + '\'' +
 				'}';
 	}
 }

@@ -1,7 +1,6 @@
 package com.feriavirtual.apirest.repository.impl;
 
 import com.feriavirtual.apirest.models.Contrato;
-import com.feriavirtual.apirest.models.Usuario;
 import com.feriavirtual.apirest.repository.IContratoRepository;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -29,10 +28,7 @@ public class ContratoRepositoryImpl implements IContratoRepository {
 
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue("in_firmado", firmado)
-                .addValue("in_id_usuario", idUsuario)
-                .addValue("out_glosa","SP_CREAR_CONTRATO ejecutado exitosamente")
-                .addValue("out_estado",0)
-                .addValue("out_id_salida",0);
+                .addValue("in_id_usuario", idUsuario);
 
         Map out = simpleJdbcCall.execute(in);
 
@@ -47,9 +43,7 @@ public class ContratoRepositoryImpl implements IContratoRepository {
                         BeanPropertyRowMapper.newInstance(Contrato.class));
 
         SqlParameterSource in = new MapSqlParameterSource()
-                .addValue("in_firmado", firmado)
-                .addValue("out_glosa", "SP_LISTAR_USUARIO ejecutado exitosamente")
-                .addValue("out_estado", 0);
+                .addValue("in_firmado", firmado);
 
         Map out = simpleJdbcCall.execute(in);
 
@@ -69,9 +63,7 @@ public class ContratoRepositoryImpl implements IContratoRepository {
 
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue("in_firmado", firmado)
-                .addValue("in_id_usuario", idUsuario)
-                .addValue("out_glosa", "SP_LISTAR_USUARIO ejecutado exitosamente")
-                .addValue("out_estado", 0);
+                .addValue("in_id_usuario", idUsuario);
 
         Map out = simpleJdbcCall.execute(in);
 
@@ -91,9 +83,7 @@ public class ContratoRepositoryImpl implements IContratoRepository {
                         BeanPropertyRowMapper.newInstance(Contrato.class));
 
         SqlParameterSource in = new MapSqlParameterSource()
-                .addValue("in_id_contrato", idContrato)
-                .addValue("out_glosa", "SP_LISTAR_USUARIO ejecutado exitosamente")
-                .addValue("out_estado", 0);
+                .addValue("in_id_contrato", idContrato);
 
         Map out = simpleJdbcCall.execute(in);
 
@@ -116,9 +106,7 @@ public class ContratoRepositoryImpl implements IContratoRepository {
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue("in_id_contrato", idContrato)
                 .addValue("in_firmado", firmado)
-                .addValue("in_id_usuario", idUsuario)
-                .addValue("out_glosa","SP_ACTUALIZAR_CONTRATO ejecutado exitosamente")
-                .addValue("out_estado", 0);
+                .addValue("in_id_usuario", idUsuario);
 
         Map out = simpleJdbcCall.execute(in);
 
@@ -132,10 +120,7 @@ public class ContratoRepositoryImpl implements IContratoRepository {
                 .withProcedureName("sp_del_contrato");
 
         SqlParameterSource in = new MapSqlParameterSource()
-                .addValue("in_id_contrato", idContrato)
-                .addValue("out_glosa","SP_ACTUALIZAR_CONTRATO ejecutado exitosamente")
-                .addValue("out_estado", 0)
-                .addValue("out_id_salida",0);
+                .addValue("in_id_contrato", idContrato);
 
         Map out = simpleJdbcCall.execute(in);
 
