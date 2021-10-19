@@ -10,14 +10,14 @@ import com.feriavirtual.apirest.models.Pais;
 
 public interface IPaisService {
 	
-	Mensaje crearPais(JdbcTemplate jdbcTemplate, Pais pais);
+	Mensaje crearPais(Pais pais);
 	
-	List<Pais> listarPais(JdbcTemplate jdbcTemplate);
+	List<Pais> listarPais();
 	
-	Pais getPaisById(JdbcTemplate jdbcTemplate, int id);
+	Pais getPaisById(int id);
 	
-	Mensaje updatePais(JdbcTemplate jdbcTemplate, int id, Pais pais);
+	Mensaje updatePais(int id, Pais pais);
 	
-	Mensaje borrarPais(JdbcTemplate jdbcTemplate, int id);
+	Mensaje borrarPais(int id);
 
 }

@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface IMonedaService {
 
-    Mensaje crearMoneda(JdbcTemplate jdbcTemplate, Moneda moneda);
+    Mensaje crearMoneda(Moneda moneda);
 
-    List<Moneda> listarMonedas(JdbcTemplate jdbcTemplate);
+    List<Moneda> listarMonedas();
 
-    Moneda buscarMonedaXId(JdbcTemplate jdbcTemplate, int idMoneda);
+    Moneda buscarMonedaXId(int idMoneda);
 
-    Mensaje updateMoneda(JdbcTemplate jdbcTemplate, int idMoneda, Moneda moneda);
+    Mensaje updateMoneda(int idMoneda, Moneda moneda);
 
-    Mensaje borrarMoneda(JdbcTemplate jdbcTemplate, int idMoneda);
+    Mensaje borrarMoneda(int idMoneda);
 }

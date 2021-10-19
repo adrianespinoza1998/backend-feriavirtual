@@ -20,8 +20,11 @@ public class ContratoServiceImpl implements IContratoService {
     @Autowired
     private IContratoRepository contratoRepository;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     @Override
-    public Mensaje crearContrato(JdbcTemplate jdbcTemplate, Contrato contrato) {
+    public Mensaje crearContrato(Contrato contrato) {
         contratoRepository.setJdbcTemplate(jdbcTemplate);
 
         Mensaje mensaje = new Mensaje();
@@ -57,25 +60,25 @@ public class ContratoServiceImpl implements IContratoService {
     }
 
     @Override
-    public List<Contrato> listarContratos(JdbcTemplate jdbcTemplate, int firmado) {
+    public List<Contrato> listarContratos(int firmado) {
         contratoRepository.setJdbcTemplate(jdbcTemplate);
         return contratoRepository.listarContratos(firmado);
     }
 
     @Override
-    public List<Contrato> listarContratosXUsuario(JdbcTemplate jdbcTemplate, int idUsuario, int firmado) {
+    public List<Contrato> listarContratosXUsuario(int idUsuario, int firmado) {
         contratoRepository.setJdbcTemplate(jdbcTemplate);
         return contratoRepository.listarContratosXUsuario(idUsuario,firmado);
     }
 
     @Override
-    public Contrato buscarContratoPorId(JdbcTemplate jdbcTemplate, int id) {
+    public Contrato buscarContratoPorId(int id) {
         contratoRepository.setJdbcTemplate(jdbcTemplate);
         return contratoRepository.getContrato(id);
     }
 
     @Override
-    public Mensaje updateContrato(JdbcTemplate jdbcTemplate, Contrato contrato, int id) {
+    public Mensaje updateContrato(Contrato contrato, int id) {
         contratoRepository.setJdbcTemplate(jdbcTemplate);
 
         Mensaje objMensaje = new Mensaje();
@@ -104,7 +107,7 @@ public class ContratoServiceImpl implements IContratoService {
 
 
     @Override
-    public Mensaje borrarContrato(JdbcTemplate jdbcTemplate, int id) {
+    public Mensaje borrarContrato(int id) {
         contratoRepository.setJdbcTemplate(jdbcTemplate);
 
         Mensaje objMensaje = new Mensaje();

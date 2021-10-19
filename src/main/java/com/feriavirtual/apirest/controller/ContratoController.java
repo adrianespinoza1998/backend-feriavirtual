@@ -21,32 +21,32 @@ public class ContratoController {
 
     @PostMapping("/api/contrato")
     public Mensaje crearContrato(@RequestBody Contrato contrato){
-        return contratoService.crearContrato(jdbcTemplate, contrato);
+        return contratoService.crearContrato(contrato);
     }
 
     @GetMapping("/api/contrato/{firmado}")
     public List<Contrato> listarContratos(@PathVariable int firmado){
-        return contratoService.listarContratos(jdbcTemplate,firmado);
+        return contratoService.listarContratos(firmado);
     }
 
     @GetMapping("/api/contrato/{id}/{firmado}")
     public List<Contrato> listarContratosXUsuario(@PathVariable int id, @PathVariable int firmado){
-        return contratoService.listarContratosXUsuario(jdbcTemplate,id,firmado);
+        return contratoService.listarContratosXUsuario(id,firmado);
     }
 
     @GetMapping("/api/contrato/buscar/{id}")
     public Contrato getContratoXId(@PathVariable int id){
-        return contratoService.buscarContratoPorId(jdbcTemplate,id);
+        return contratoService.buscarContratoPorId(id);
     }
 
     @PutMapping("/api/contrato/{id}")
     public Mensaje updateContrato(@PathVariable int id, @RequestBody Contrato contrato){
-        return contratoService.updateContrato(jdbcTemplate,contrato,id);
+        return contratoService.updateContrato(contrato,id);
     }
 
     @DeleteMapping("/api/contrato/{id}")
     public Mensaje deleteContrato(@PathVariable int id){
-        return contratoService.borrarContrato(jdbcTemplate,id);
+        return contratoService.borrarContrato(id);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.feriavirtual.apirest.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -19,117 +20,107 @@ public class PaisServiceImpl implements IPaisService {
 	
 	@Autowired
 	private IPaisRepository paisRepository;
-	
+
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
 	public PaisServiceImpl() {
 		
 	}
 
 	@Override
-	public Mensaje crearPais(JdbcTemplate jdbcTemplate, Pais pais) {
+	public Mensaje crearPais(Pais pais) {
 
 		paisRepository.setJdbcTemplate(jdbcTemplate);
 		
 		Mensaje mensaje = new Mensaje();
-		
-		try {
-			
-			if(!pais.getDescripcion().equals("")) {
 
-				int crearPais = paisRepository.crearPais(pais.getDescripcion());
-				
-				if(crearPais == 1) {
-					
-					mensaje.setMsg("Pais " + pais.getDescripcion() + " creado de forma correcta");
-					
-					return mensaje;
-					
-				}
-				
-				mensaje.setMsg("No se creo el pais " + pais.getDescripcion());
-			}else {
-				 mensaje.setMsg("Pais vacío");
-				 
-				 return mensaje;
+		try{
+			Map crearPais = paisRepository.crearPais(pais.getDescripcion().toUpperCase());
+
+			BigDecimal verfCrearPais = (BigDecimal) crearPais.get("OUT_ESTADO");
+
+			if(verfCrearPais.intValue() == 0){
+				mensaje.setMsg("Pais " + pais.getDescripcion() + " creado de forma correcta");
+
+				return mensaje;
 			}
-			
+
+			mensaje.setMsg("No se creo el pais " + pais.getDescripcion());
+
 			return mensaje;
-		}catch (Exception e) {
+		}catch (Exception e){
 			mensaje.setMsg(e.getMessage());
-			
+
 			return mensaje;
 		}
 	}
 
 	@Override
-	public List<Pais> listarPais(JdbcTemplate jdbcTemplate) {
+	public List<Pais> listarPais() {
 		paisRepository.setJdbcTemplate(jdbcTemplate);
 		
 		return paisRepository.listarPaises();
 	}
 
 	@Override
-	public Pais getPaisById(JdbcTemplate jdbcTemplate, int id) {
+	public Pais getPaisById(int id) {
 		paisRepository.setJdbcTemplate(jdbcTemplate);
 		
 		return paisRepository.buscarPaisPorId(id);
 	}
 
 	@Override
-	public Mensaje updatePais(JdbcTemplate jdbcTemplate, int id, Pais pais) {
+	public Mensaje updatePais(int id, Pais pais) {
 		
 		paisRepository.setJdbcTemplate(jdbcTemplate);
 		
 		Mensaje objMensaje = new Mensaje();
-		
-		try {
-			int editarPais = paisRepository.editarPais(id, pais.getDescripcion());
-			
-			if(editarPais == 1) {
-				
+
+		try{
+			Map editarPais = paisRepository.editarPais(id, pais.getDescripcion().toUpperCase());
+
+			BigDecimal verfEditarPais = (BigDecimal) editarPais.get("OUT_ESTADO");
+
+			if(verfEditarPais.intValue() == 0){
 				objMensaje.setMsg("País " + pais.getDescripcion() + " editado");
-				
+
 				return objMensaje;
-				
 			}
-			
+
 			objMensaje.setMsg("No se pudo editar el país" + pais.getDescripcion());
-			
+
 			return objMensaje;
-			
-		}catch (Exception e) {
+		}catch (Exception e){
 			objMensaje.setMsg(e.getMessage());
-			
+
 			return objMensaje;
 		}
-
 	}
 
 	@Override
-	public Mensaje borrarPais(JdbcTemplate jdbcTemplate, int id) {
+	public Mensaje borrarPais(int id) {
 		
 		paisRepository.setJdbcTemplate(jdbcTemplate);
 		
 		Mensaje objMensaje = new Mensaje();
-		
-		try {
-			
-			int deletePais = paisRepository.borrarPais(id);
-			
-			if(deletePais == 1) {
-				
+
+		try{
+			Map borrarPais = paisRepository.borrarPais(id);
+
+			BigDecimal verfBorrarPais = (BigDecimal) borrarPais.get("OUT_ESTADO");
+
+			if(verfBorrarPais.intValue() == 0){
 				objMensaje.setMsg("País con el id: " + id + " borrado");
-				
+
 				return objMensaje;
-				
-			}else {
-				
+			}else{
 				objMensaje.setMsg("No se pudo borrar el país con el id: " + id);
 				return objMensaje;
 			}
-			
-		}catch (Exception e) {
+		}catch (Exception e){
 			objMensaje.setMsg(e.getMessage());
-			
+
 			return objMensaje;
 		}
 	}

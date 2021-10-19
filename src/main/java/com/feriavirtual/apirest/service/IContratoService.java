@@ -8,15 +8,15 @@ import java.util.List;
 
 public interface IContratoService {
 
-    Mensaje crearContrato(JdbcTemplate jdbcTemplate, Contrato contrato);
+    Mensaje crearContrato(Contrato contrato);
 
-    List<Contrato> listarContratos(JdbcTemplate jdbcTemplate, int firmado);
+    List<Contrato> listarContratos(int firmado);
 
-    List<Contrato> listarContratosXUsuario(JdbcTemplate jdbcTemplate, int idUsuario, int firmado);
+    List<Contrato> listarContratosXUsuario(int idUsuario, int firmado);
 
-    Contrato buscarContratoPorId(JdbcTemplate jdbcTemplate, int id);
+    Contrato buscarContratoPorId(int id);
 
-    Mensaje updateContrato(JdbcTemplate jdbcTemplate, Contrato contrato, int id);
+    Mensaje updateContrato(Contrato contrato, int id);
 
-    Mensaje borrarContrato(JdbcTemplate jdbcTemplate, int id);
+    Mensaje borrarContrato(int id);
 }

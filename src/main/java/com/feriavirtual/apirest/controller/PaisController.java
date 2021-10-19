@@ -1,10 +1,8 @@
 package com.feriavirtual.apirest.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,35 +22,32 @@ import com.feriavirtual.apirest.service.IPaisService;
 public class PaisController {
 	
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	
-	@Autowired
 	private IPaisService paisService;
 	
 	@PostMapping("/api/pais")
 	public Mensaje crearPais(@RequestBody Pais pais){		
-		return paisService.crearPais(jdbcTemplate, pais);		
+		return paisService.crearPais(pais);
 	}
 	
 	@GetMapping("/api/pais")
 	public List<Pais> listarPais(){
-		return paisService.listarPais(jdbcTemplate);
+		return paisService.listarPais();
 	}
 	
 	@GetMapping("/api/pais/{id}")
 	public Pais getPaisById(@PathVariable int id) {
-		return paisService.getPaisById(jdbcTemplate, id);
+		return paisService.getPaisById(id);
 	}
 	
 	@PutMapping("/api/pais/{id}")
 	public Mensaje updatePais(@PathVariable int id,
 			@RequestBody Pais pais) {
-		return paisService.updatePais(jdbcTemplate, id, pais);
+		return paisService.updatePais(id, pais);
 	}
 	
 	@DeleteMapping("/api/pais/{id}")
 	public Mensaje borrarPais(@PathVariable int id) {
-		return paisService.borrarPais(jdbcTemplate, id);
+		return paisService.borrarPais(id);
 	}
 
 }

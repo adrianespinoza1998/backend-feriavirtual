@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 @Service
@@ -21,8 +20,11 @@ public class MonedaServiceImpl implements IMonedaService {
     @Autowired
     private IMonedaRepository monedaRepository;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     @Override
-    public Mensaje crearMoneda(JdbcTemplate jdbcTemplate, Moneda moneda) {
+    public Mensaje crearMoneda(Moneda moneda) {
         monedaRepository.setJdbcTemplate(jdbcTemplate);
 
         Mensaje mensaje = new Mensaje();
@@ -60,19 +62,19 @@ public class MonedaServiceImpl implements IMonedaService {
     }
 
     @Override
-    public List<Moneda> listarMonedas(JdbcTemplate jdbcTemplate) {
+    public List<Moneda> listarMonedas() {
         monedaRepository.setJdbcTemplate(jdbcTemplate);
         return monedaRepository.listarMonedas();
     }
 
     @Override
-    public Moneda buscarMonedaXId(JdbcTemplate jdbcTemplate, int idMoneda) {
+    public Moneda buscarMonedaXId(int idMoneda) {
         monedaRepository.setJdbcTemplate(jdbcTemplate);
         return monedaRepository.getMonedaById(idMoneda);
     }
 
     @Override
-    public Mensaje updateMoneda(JdbcTemplate jdbcTemplate, int idMoneda, Moneda moneda) {
+    public Mensaje updateMoneda(int idMoneda, Moneda moneda) {
         monedaRepository.setJdbcTemplate(jdbcTemplate);
 
         Mensaje mensaje = new Mensaje();
@@ -110,7 +112,7 @@ public class MonedaServiceImpl implements IMonedaService {
     }
 
     @Override
-    public Mensaje borrarMoneda(JdbcTemplate jdbcTemplate, int idMoneda) {
+    public Mensaje borrarMoneda(int idMoneda) {
         monedaRepository.setJdbcTemplate(jdbcTemplate);
 
         Mensaje mensaje = new Mensaje();
