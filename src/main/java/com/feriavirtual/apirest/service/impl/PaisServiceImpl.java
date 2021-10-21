@@ -51,6 +51,7 @@ public class PaisServiceImpl implements IPaisService {
 			return mensaje;
 		}catch (Exception e){
 			mensaje.setMsg(e.getMessage());
+			e.printStackTrace();
 
 			return mensaje;
 		}
@@ -93,6 +94,7 @@ public class PaisServiceImpl implements IPaisService {
 			return objMensaje;
 		}catch (Exception e){
 			objMensaje.setMsg(e.getMessage());
+			e.printStackTrace();
 
 			return objMensaje;
 		}

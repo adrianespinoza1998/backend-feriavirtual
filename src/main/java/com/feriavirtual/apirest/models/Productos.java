@@ -7,6 +7,7 @@ public class Productos {
 	private  int precio;
 	private  int stock;
 	private  int idUsuario;
+	private  int idTipoProducto;
 
 	public Productos() {
 	}
@@ -51,6 +52,14 @@ public class Productos {
 		this.idUsuario = idUsuario;
 	}
 
+	public int getIdTipoProducto() {
+		return idTipoProducto;
+	}
+
+	public void setIdTipoProducto(int idTipoProducto) {
+		this.idTipoProducto = idTipoProducto;
+	}
+
 	@Override
 	public String toString() {
 		return "Productos{" +
@@ -59,6 +68,7 @@ public class Productos {
 				", precio=" + precio +
 				", stock=" + stock +
 				", idUsuario=" + idUsuario +
+				", idTipoProducto=" + idTipoProducto +
 				'}';
 	}
 }
