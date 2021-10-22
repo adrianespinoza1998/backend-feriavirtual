@@ -3,7 +3,7 @@ package com.feriavirtual.apirest.models;
 public class TipoTransporte {
     
 	private int idTipoTransporte;
-	private int descripcion;
+	private String descripcion;
 	
 	public TipoTransporte() {
 		
@@ -17,11 +17,11 @@ public class TipoTransporte {
 		this.idTipoTransporte = idTipoTransporte;
 	}
 
-	public int getDescripcion() {
+	public String getDescripcion() {
 		return descripcion;
 	}
 
-	public void setDescripcion(int descripcion) {
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
