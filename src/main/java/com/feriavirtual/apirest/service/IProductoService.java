@@ -9,13 +9,13 @@ import com.feriavirtual.apirest.models.Productos;
 
 public interface IProductoService {
 
-	Mensaje crearProducto(JdbcTemplate jdbcTemplate, Productos producto);
+	Mensaje crearProducto(Productos producto);
 	
-	List<Productos> listarProductos(JdbcTemplate jdbcTemplate, int idRol);
+	List<Productos> listarProductos(int idUsuario);
 	
-	Productos getProductoById(JdbcTemplate jdbcTemplate, int id);
+	Productos getProductoById(int id);
 	
-	Mensaje updateProducto(JdbcTemplate jdbcTemplate, Productos producto, int id);
+	Mensaje updateProducto(Productos producto, int id);
 	
-	Mensaje borrarProducto(JdbcTemplate jdbcTemplate, int id);
+	Mensaje borrarProducto(int id);
 }

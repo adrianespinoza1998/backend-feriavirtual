@@ -18,124 +18,106 @@ public class ProductoServiceImpl implements IProductoService{
 
 	@Autowired
 	private IProductoRepository productoRepository;
+
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 	
 	public ProductoServiceImpl() {
 		
 	}
-	
+
 	@Override
-	public Mensaje crearProducto(JdbcTemplate jdbcTemplate, Productos producto) {
-		/*productoRepository.setJdbcTemplate(jdbcTemplate);
-		
+	public Mensaje crearProducto(Productos producto) {
+		productoRepository.setJdbcTemplate(jdbcTemplate);
+
 		Mensaje mensaje = new Mensaje();
-		
-		try {
-			
-			if(producto.getNombreProducto()!= null) {
 
-				int crearProducto = productoRepository.crearProducto(producto.getNombreProducto().toUpperCase(), 
-						producto.getMedidaProducto(), producto.getPrecioProducto(), producto.getStockProducto(),
-						producto.getIdRol());
-				
-				if(crearProducto == 1) {
-					
-					mensaje.setMsg("Producto " + producto.getNombreProducto() + " creado de forma correcta");
-					
-					return mensaje;
-					
-				}
-				
-				mensaje.setMsg("No se creo el producto " + producto.getNombreProducto());
-			}else {
-				 mensaje.setMsg("Producto vacío ," + producto.toString());
-				 
-				 return mensaje;
+		try{
+			boolean crearProducto = productoRepository.crearProducto(producto.getKilos(),
+					producto.getPrecio(), producto.getStock(), producto.getIdUsuario(),
+					producto.getIdTipoProducto());
+
+			if(crearProducto){
+				mensaje.setMsg("Producto con el id tipo producto: " + producto.getIdTipoProducto() + " creado de forma correcta");
+
+				return mensaje;
 			}
-			
+
+			mensaje.setMsg("No se creo el producto con el id tipo producto:  " + producto.getIdTipoProducto());
+
 			return mensaje;
-		}catch (Exception e) {
+		}catch (Exception e){
 			mensaje.setMsg(e.getMessage());
-			
+			e.printStackTrace();
+
 			return mensaje;
-		}*/
-
-		return null;
+		}
 	}
 
 	@Override
-	public List<Productos> listarProductos(JdbcTemplate jdbcTemplate, int idRol) {
+	public List<Productos> listarProductos(int idUsario) {
 		productoRepository.setJdbcTemplate(jdbcTemplate);
-		
-		return productoRepository.listarProductos(idRol);
+		return productoRepository.listarProductos(idUsario);
 	}
 
 	@Override
-	public Productos getProductoById(JdbcTemplate jdbcTemplate, int id) {
+	public Productos getProductoById(int id) {
 		productoRepository.setJdbcTemplate(jdbcTemplate);
-		
 		return productoRepository.buscarProductoPorId(id);
 	}
 
 	@Override
-	public Mensaje updateProducto(JdbcTemplate jdbcTemplate, Productos producto, int id) {
-		
-		/*productoRepository.setJdbcTemplate(jdbcTemplate);
-		
-		Mensaje objMensaje = new Mensaje();
-		
-		try {
-			int editarProducto = productoRepository.editarProducto(producto.getNombreProducto(), producto.getMedidaProducto(),
-					producto.getPrecioProducto(), producto.getStockProducto(), producto.getIdRol(), id);
-			
-			if(editarProducto == 1) {
-				
-				objMensaje.setMsg("Producto " + producto.getNombreProducto() + " editado");
-				
-				return objMensaje;
-				
-			}
-			
-			objMensaje.setMsg("No se pudo editar el producto " + producto.getNombreProducto());
-			
-			return objMensaje;
-			
-		}catch (Exception e) {
-			objMensaje.setMsg(e.getMessage());
-			
-			return objMensaje;
-		}*/
+	public Mensaje updateProducto(Productos producto, int id) {
+		productoRepository.setJdbcTemplate(jdbcTemplate);
 
-		return null;
+		Mensaje mensaje = new Mensaje();
+
+		try{
+			boolean editarProducto = productoRepository.editarProducto(producto.getIdProducto(),
+					producto.getKilos(), producto.getPrecio(), producto.getStock(),producto.getIdUsuario(),
+					producto.getIdTipoProducto());
+
+			if(editarProducto){
+				mensaje.setMsg("Producto con el id tipo producto: " + producto.getIdTipoProducto() + " editado");
+
+				return mensaje;
+			}
+
+			mensaje.setMsg("No se pudo editar el producto con el id tipo producto: " +producto.getIdTipoProducto());
+
+			return mensaje;
+		}catch (Exception e){
+			mensaje.setMsg(e.getMessage());
+			e.printStackTrace();
+
+			return mensaje;
+		}
+
 	}
 
 	@Override
-	public Mensaje borrarProducto(JdbcTemplate jdbcTemplate, int id) {
-		
+	public Mensaje borrarProducto(int id) {
 		productoRepository.setJdbcTemplate(jdbcTemplate);
-		
-		Mensaje objMensaje = new Mensaje();
-		
-		try {
-			
-			int deleteProducto = productoRepository.borrarProducto(id);
-			
-			if(deleteProducto == 1) {
-				
-				objMensaje.setMsg("Producto con el id: " + id + " borrado");
-				
-				return objMensaje;
-				
-			}else {
-				
-				objMensaje.setMsg("No se pudo borrar el producto con el id: " + id);
-				return objMensaje;
+
+		Mensaje mensaje = new Mensaje();
+
+		try{
+			boolean borrarProducto = productoRepository.borrarProducto(id);
+
+			if(borrarProducto){
+				mensaje.setMsg("Producto con el id: " + id + " borrado");
+
+				return mensaje;
 			}
-			
-		}catch (Exception e) {
-			objMensaje.setMsg(e.getMessage());
-			
-			return objMensaje;
+
+			mensaje.setMsg("No se pudo borrar el producto con el id: " + id);
+
+			return mensaje;
+		}catch (Exception e){
+			mensaje.setMsg(e.getMessage());
+			e.printStackTrace();
+
+			return mensaje;
 		}
 	}
-	
 }

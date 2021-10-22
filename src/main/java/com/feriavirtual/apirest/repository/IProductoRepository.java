@@ -8,16 +8,15 @@ import com.feriavirtual.apirest.models.Productos;
 
 public interface IProductoRepository {
 	
-	int crearProducto(String nombreProducto, int medidaProducto, int precioProducto, int stockProducto, int idRol);
+	boolean crearProducto(int kilos, int precio, int stock, int idUsuario, int idTipoProducto);
 	
-	List<Productos> listarProductos (int idRol);
+	List<Productos> listarProductos (int idUsuario);
 	
 	Productos buscarProductoPorId(int idProducto);
 	
-	int editarProducto(String nombreProducto, int medidaProducto, int precioProducto, int stockProducto, int idRol,
-			int idProducto);
+	boolean editarProducto(int id, int kilos, int precio, int stock, int idUsuario, int idTipoProducto);
 	
-	int borrarProducto(int id);
+	boolean borrarProducto(int id);
 	
 	JdbcTemplate getJdbcTemplate();
 	
