@@ -14,9 +14,6 @@ import java.util.List;
 public class TipoProductoController {
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    @Autowired
     private ITipoProductoService tipoProductoService;
 
     @PostMapping("/api/tipo-producto")
