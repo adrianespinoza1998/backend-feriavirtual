@@ -78,12 +78,12 @@ public class ProductoServiceImpl implements IProductoService{
 					producto.getIdTipoProducto());
 
 			if(editarProducto){
-				mensaje.setMsg("Producto con el id tipo producto: " + producto.getIdTipoProducto() + " editado");
+				mensaje.setMsg("Producto con el id: " + id + " editado");
 
 				return mensaje;
 			}
 
-			mensaje.setMsg("No se pudo editar el producto con el id tipo producto: " +producto.getIdTipoProducto());
+			mensaje.setMsg("No se pudo editar el producto con el id: " + id);
 
 			return mensaje;
 		}catch (Exception e){

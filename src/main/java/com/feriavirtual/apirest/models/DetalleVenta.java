@@ -2,28 +2,28 @@ package com.feriavirtual.apirest.models;
 
 public class DetalleVenta {
 
-	private  int id_detalle_venta;
-	private  int id_producto;
+	private  int idDetalleVenta;
+	private  int idProducto;
 	private  int cantidad;
 	private  int precio;
 
 	public DetalleVenta() {
 	}
 
-	public int getId_detalle_venta() {
-		return id_detalle_venta;
+	public int getIdDetalleVenta() {
+		return idDetalleVenta;
 	}
 
-	public void setId_detalle_venta(int id_detalle_venta) {
-		this.id_detalle_venta = id_detalle_venta;
+	public void setIdDetalleVenta(int idDetalleVenta) {
+		this.idDetalleVenta = idDetalleVenta;
 	}
 
-	public int getId_producto() {
-		return id_producto;
+	public int getIdProducto() {
+		return idProducto;
 	}
 
-	public void setId_producto(int id_producto) {
-		this.id_producto = id_producto;
+	public void setIdProducto(int idProducto) {
+		this.idProducto = idProducto;
 	}
 
 	public int getCantidad() {
@@ -45,8 +45,8 @@ public class DetalleVenta {
 	@Override
 	public String toString() {
 		return "DetalleVenta{" +
-				"id_detalle_venta=" + id_detalle_venta +
-				", id_producto=" + id_producto +
+				"idDetalleVenta=" + idDetalleVenta +
+				", idProducto=" + idProducto +
 				", cantidad=" + cantidad +
 				", precio=" + precio +
 				'}';

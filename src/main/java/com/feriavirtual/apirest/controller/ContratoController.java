@@ -14,9 +14,6 @@ import java.util.List;
 public class ContratoController {
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    @Autowired
     private IContratoService contratoService;
 
     @PostMapping("/api/contrato")
