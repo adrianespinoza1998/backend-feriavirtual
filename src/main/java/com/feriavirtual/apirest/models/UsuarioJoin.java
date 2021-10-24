@@ -10,6 +10,7 @@ public class UsuarioJoin {
     private String direccion;
     private String codPostal;
     private String correo;
+    private String usuario;
     private String pais;
     private String rol;
     private String estado;
@@ -114,6 +115,14 @@ public class UsuarioJoin {
         this.terminosCondiciones = terminosCondiciones;
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
     @Override
     public String toString() {
         return "UsuarioJoin{" +
@@ -125,6 +134,7 @@ public class UsuarioJoin {
                 ", direccion='" + direccion + '\'' +
                 ", codPostal='" + codPostal + '\'' +
                 ", correo='" + correo + '\'' +
+                ", usuario='" + usuario + '\'' +
                 ", pais='" + pais + '\'' +
                 ", rol='" + rol + '\'' +
                 ", estado='" + estado + '\'' +

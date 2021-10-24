@@ -88,7 +88,12 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		Mensaje objMensaje = new Mensaje();
 
 		try{
-			String contrasenaCrypt = encriptarPassword(usuario.getContrasena());
+
+			String contrasenaCrypt = null;
+
+			if(usuario.getContrasena()!=null){
+				contrasenaCrypt = encriptarPassword(usuario.getContrasena());
+			}
 
 			boolean updateUsuario = usuarioRepository.editarUsuario(id, usuario.getNombre().toUpperCase(),
 					usuario.getApPaterno().toUpperCase(), usuario.getApMaterno().toUpperCase(), usuario.getDni(),

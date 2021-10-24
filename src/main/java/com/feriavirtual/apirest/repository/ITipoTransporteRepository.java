@@ -1,6 +1,5 @@
 package com.feriavirtual.apirest.repository;
 
-import com.feriavirtual.apirest.models.Productos;
 import com.feriavirtual.apirest.models.TipoTransporte;
 import org.springframework.jdbc.core.JdbcTemplate;
 
