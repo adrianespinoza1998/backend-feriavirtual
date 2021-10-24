@@ -75,12 +75,12 @@ public class SubastasServiceImpl implements ISubastasService {
                     subastas.getIdSolicitudProductos());
 
             if(editarSubasta){
-                mensaje.setMsg("Subasta con el id usuario: " + subastas.getIdUsuario() + " editado");
+                mensaje.setMsg("Subasta con el id: " + id + " editado");
 
                 return mensaje;
             }
 
-            mensaje.setMsg("No se pudo editar la subasta con el id usuario: " + subastas.getIdUsuario());
+            mensaje.setMsg("No se pudo editar la subasta con el id: " + id);
 
             return mensaje;
         }catch (Exception e){
