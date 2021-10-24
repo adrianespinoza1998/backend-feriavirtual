@@ -1,8 +1,6 @@
 package com.feriavirtual.apirest.service.impl;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
 import com.feriavirtual.apirest.models.UsuarioJoin;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -21,10 +19,13 @@ import com.feriavirtual.apirest.service.IUsuarioService;
 public class UsuarioServiceImpl implements IUsuarioService{
 
 	@Autowired
-	public IUsuarioRepository usuarioRepository;
+	private IUsuarioRepository usuarioRepository;
+
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 	
 	@Override
-	public Mensaje crearUsuario(JdbcTemplate jdbcTemplate, Usuario usuario) {
+	public Mensaje crearUsuario(Usuario usuario) {
 		
 		usuarioRepository.setJdbcTemplate(jdbcTemplate);
 		
@@ -36,15 +37,13 @@ public class UsuarioServiceImpl implements IUsuarioService{
 
 				String contrasena = encriptarPassword(usuario.getContrasena());
 
-				Map crearUsuario = usuarioRepository.crearUsuario(usuario.getNombre().toUpperCase(),
+				boolean crearUsuario = usuarioRepository.crearUsuario(usuario.getNombre().toUpperCase(),
 						usuario.getApPaterno().toUpperCase(), usuario.getApMaterno().toUpperCase(), 
 						usuario.getDni().toUpperCase(), usuario.getDireccion().toUpperCase(), usuario.getCodPostal(),
 						usuario.getCorreo().toUpperCase(), usuario.getUsuario(), contrasena,
 						usuario.getIdPais(), usuario.getIdRol(), usuario.getIdEstado(), usuario.getTerminosCondiciones());
 
-				BigDecimal verCrearUsuario = (BigDecimal) crearUsuario.get("OUT_ESTADO");
-
-				if(verCrearUsuario.intValue() == 0) {
+				if(crearUsuario) {
 					
 					mensaje.setMsg("Usuario " + usuario.getNombre() + " creado de forma correcta");
 					
@@ -52,7 +51,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 					
 				}
 				
-				mensaje.setMsg("No se creo el usuario " + usuario.getNombre() + ", error: " + (String) crearUsuario.get("OUT_GLOSA"));
+				mensaje.setMsg("No se creo el usuario " + usuario.getNombre());
 			}else {
 				 mensaje.setMsg("Usuario vacío ," + usuario.toString());
 
@@ -69,34 +68,35 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	}
 
 	@Override
-	public List<UsuarioJoin> listarUsuarios(JdbcTemplate jdbcTemplate, int idEstado) {
+	public List<UsuarioJoin> listarUsuarios(int idEstado) {
 		usuarioRepository.setJdbcTemplate(jdbcTemplate);
 		
 		return usuarioRepository.listarUsuarios(idEstado);
 	}
 
 	@Override
-	public Usuario buscarUsuarioPorId(JdbcTemplate jdbcTemplate, int id) {
+	public Usuario buscarUsuarioPorId(int id) {
 		usuarioRepository.setJdbcTemplate(jdbcTemplate);
 		
 		return usuarioRepository.buscarUsuarioPorId(id);
 	}
 
 	@Override
-	public Mensaje updateUsuario(JdbcTemplate jdbcTemplate, Usuario usuario, int id) {
+	public Mensaje updateUsuario(Usuario usuario, int id) {
 
 		usuarioRepository.setJdbcTemplate(jdbcTemplate);
 		Mensaje objMensaje = new Mensaje();
 
 		try{
-			Map updateUsuario = usuarioRepository.editarUsuario(usuario.getNombre(),usuario.getApPaterno(),
-					usuario.getApMaterno(),usuario.getDni(),usuario.getDireccion(),usuario.getCodPostal(),
-					usuario.getCorreo(),usuario.getUsuario(),usuario.getContrasena(),usuario.getIdPais()
-					,usuario.getIdRol(),usuario.getTerminosCondiciones(),usuario.getIdUsuario());
+			String contrasenaCrypt = encriptarPassword(usuario.getContrasena());
 
-			BigDecimal verUpdUsuario = (BigDecimal) updateUsuario.get("OUT_ESTADO");
+			boolean updateUsuario = usuarioRepository.editarUsuario(id, usuario.getNombre().toUpperCase(),
+					usuario.getApPaterno().toUpperCase(), usuario.getApMaterno().toUpperCase(), usuario.getDni(),
+					usuario.getDireccion().toUpperCase(), usuario.getCodPostal(), usuario.getCorreo().toUpperCase(),
+					usuario.getUsuario(), contrasenaCrypt, usuario.getIdPais(), usuario.getIdRol(),
+					usuario.getTerminosCondiciones());
 
-			if(verUpdUsuario.intValue() == 0){
+			if(updateUsuario){
 				objMensaje.setMsg("Usuario con el id: " + id + " actualizado");
 			}else {
 				objMensaje.setMsg("No se pudo actaulizar el usuario con el id: " + id);
@@ -112,7 +112,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	}
 
 	@Override
-	public Mensaje borrarUsuario(JdbcTemplate jdbcTemplate, int id) {
+	public Mensaje borrarUsuario(int id) {
 		
 		usuarioRepository.setJdbcTemplate(jdbcTemplate);
 		
@@ -120,11 +120,9 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		
 		try {
 			
-			Map deleteUsuario = usuarioRepository.borrarUsuario(id);
-
-			BigDecimal verDeleteUsuario = (BigDecimal) deleteUsuario.get("OUT_ESTADO");
+			boolean deleteUsuario = usuarioRepository.borrarUsuario(id);
 			
-			if(verDeleteUsuario.intValue() == 0) {
+			if(deleteUsuario) {
 				
 				objMensaje.setMsg("Usuario con el id: " + id + " borrado");
 
@@ -143,7 +141,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	}
 
 	@Override
-	public Usuario verificarUsuario(JdbcTemplate jdbcTemplate, Usuario usuario) {
+	public Usuario verificarUsuario(Usuario usuario) {
 		usuarioRepository.setJdbcTemplate(jdbcTemplate);
 		
 		Usuario buscarUsuario= usuarioRepository.verificarUsuario(usuario.getCorreo().toUpperCase());

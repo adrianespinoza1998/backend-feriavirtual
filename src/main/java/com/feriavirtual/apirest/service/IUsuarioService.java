@@ -12,15 +12,15 @@ import com.feriavirtual.apirest.models.Usuario;
 
 public interface IUsuarioService {
 
-	Mensaje crearUsuario(JdbcTemplate jdbcTemplate, Usuario usuario);
+	Mensaje crearUsuario(Usuario usuario);
 
-	List<UsuarioJoin> listarUsuarios(JdbcTemplate jdbcTemplate, int idEstado);
+	List<UsuarioJoin> listarUsuarios(int idEstado);
 	
-	Usuario buscarUsuarioPorId(JdbcTemplate jdbcTemplate, int id);
+	Usuario buscarUsuarioPorId(int id);
 	
-	Mensaje updateUsuario(JdbcTemplate jdbcTemplate, Usuario usuario, int id);
+	Mensaje updateUsuario(Usuario usuario, int id);
 
-	Mensaje borrarUsuario(JdbcTemplate jdbcTemplate, int id);
+	Mensaje borrarUsuario(int id);
 	
-	Usuario verificarUsuario (JdbcTemplate jdbcTemplate, Usuario usuario);
+	Usuario verificarUsuario (Usuario usuario);
 }

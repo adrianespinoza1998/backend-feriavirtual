@@ -22,43 +22,40 @@ import com.feriavirtual.apirest.service.IUsuarioService;
 @RestController
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class UsuarioController {
-
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
 	private IUsuarioService usuarioService;
 	
 	@PostMapping("/api/usuario")
 	public Mensaje crearUsuario(@RequestBody Usuario usuario) {
-		return usuarioService.crearUsuario(jdbcTemplate, usuario);
+		return usuarioService.crearUsuario(usuario);
 	}
 	
 	@PostMapping("/api/auth")
 	public Usuario verificarUsuario(@RequestBody Usuario usuario) {
-		return usuarioService.verificarUsuario(jdbcTemplate, usuario);
+		return usuarioService.verificarUsuario(usuario);
 		
 	}
 	
 	@GetMapping("/api/usuario/{id}")
 	public List<UsuarioJoin> listarUsuarios(@PathVariable int id){
-		return usuarioService.listarUsuarios(jdbcTemplate, id);
+		return usuarioService.listarUsuarios(id);
 	}
 	
 	@GetMapping("/api/usuario/buscar/{id}")
 	public Usuario getUsuarioById(@PathVariable int id) {
-		return usuarioService.buscarUsuarioPorId(jdbcTemplate, id);
+		return usuarioService.buscarUsuarioPorId(id);
 	}
 	
 	@PutMapping("/api/usuario/{id}")
 	public Mensaje updateUsuario(@PathVariable int id,
 			@RequestBody Usuario usuario) {
-		return usuarioService.updateUsuario(jdbcTemplate, usuario, id);
+		return usuarioService.updateUsuario(usuario, id);
 	}
 	
 	@DeleteMapping("/api/usuario/{id}")
 	public Mensaje borrarUsuario(@PathVariable int id) {
-		return usuarioService.borrarUsuario(jdbcTemplate, id);
+		return usuarioService.borrarUsuario(id);
 	}
 
 }

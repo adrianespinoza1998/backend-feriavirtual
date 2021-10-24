@@ -1,5 +1,6 @@
 package com.feriavirtual.apirest.repository.impl;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +29,7 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository{
 	}
 
 	@Override
-	public Map crearUsuario(String nombre, String apPaterno, String apMaterno, String dni, String direccion, String codPostal, String correo, String usuario, String contrasena, int idPais, int idRol, int idEstado, int terminosCondiciones) {
+	public boolean crearUsuario(String nombre, String apPaterno, String apMaterno, String dni, String direccion, String codPostal, String correo, String usuario, String contrasena, int idPais, int idRol, int idEstado, int terminosCondiciones) {
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("sp_crear_usuario");
 
@@ -49,7 +50,13 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository{
 
 		Map out = simpleJdbcCall.execute(in);
 
-		return out;
+		BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+		if(verfOut.intValue() == 0){
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override
@@ -95,12 +102,12 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository{
 	}
 
 	@Override
-	public Map editarUsuario(String nombre, String apPaterno, String apMaterno, String dni, String direccion, String codPostal, String correo, String usuario, String contrasena, int idPais, int idRol, int termCond, int idUsuario) {
+	public boolean editarUsuario(int id, String nombre, String apPaterno, String apMaterno, String dni, String direccion, String codPostal, String correo, String usuario, String contrasena, int idPais, int idRol, int termCond) {
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("sp_actualizar_usuario");
 
 		SqlParameterSource in = new MapSqlParameterSource()
-				.addValue("in_id_usuario", idUsuario)
+				.addValue("in_id_usuario", id)
 				.addValue("in_nombre", nombre)
 				.addValue("in_ap_paterno", apPaterno)
 				.addValue("in_ap_materno", apMaterno)
@@ -115,12 +122,17 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository{
 				.addValue("in_terminos_condiciones", termCond);
 
 		Map out = simpleJdbcCall.execute(in);
+		BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
 
-		return out;
+		if(verfOut.intValue() == 0){
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override
-	public Map borrarUsuario(int idUsuario) {
+	public boolean borrarUsuario(int idUsuario) {
 
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("sp_desactivar_usuario");
@@ -129,7 +141,14 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository{
 				.addValue("in_id_usuario", idUsuario)
 				.addValue("in_id_estado", 2);
 		Map out = simpleJdbcCall.execute(in);
-		return out;
+
+		BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+		if(verfOut.intValue() == 0){
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override
