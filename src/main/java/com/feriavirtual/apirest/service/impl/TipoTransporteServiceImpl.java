@@ -95,7 +95,7 @@ public class TipoTransporteServiceImpl implements ITipoTransporteService {
             boolean deleteTipoTran = tipoTransporteRepository.borrarTipoTansporte(id);
 
             if(deleteTipoTran){
-                mensaje.setMsg("Tipo transporte  con el id: " + id + " borrado de forma correcta");
+                mensaje.setMsg("Tipo transporte con el id: " + id + " borrado de forma correcta");
 
                 return mensaje;
             }

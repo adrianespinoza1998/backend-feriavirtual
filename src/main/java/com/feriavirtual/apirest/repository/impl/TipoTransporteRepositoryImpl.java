@@ -74,8 +74,8 @@ public class TipoTransporteRepositoryImpl implements ITipoTransporteRepository {
         List<TipoTransporte> listaTipoTransporte = (List<TipoTransporte>) out.get("out_pc_listar_titran");
 
         if(listaTipoTransporte.size()>0){
-            TipoTransporte objTipoTrnasporte = listaTipoTransporte.get(0);
-            return objTipoTrnasporte;
+            TipoTransporte objTipoTransporte = listaTipoTransporte.get(0);
+            return objTipoTransporte;
         }else{
             return new TipoTransporte();
         }

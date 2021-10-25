@@ -14,33 +14,30 @@ import java.util.List;
 public class TipoTransporteController {
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    @Autowired
     private ITipoTransporteService tipoTransporteService;
 
     @PostMapping("/api/tipo-transporte")
-    public Mensaje crearTipoProducto(@RequestBody TipoTransporte tipoTransporte){
+    public Mensaje crearTipoTransporte(@RequestBody TipoTransporte tipoTransporte){
         return tipoTransporteService.crearTipoTransporte(tipoTransporte);
     }
 
     @GetMapping("/api/tipo-transporte")
-    public List<TipoTransporte> listarTipoProducto (){
+    public List<TipoTransporte> listarTipoTransporte (){
         return tipoTransporteService.listarTipoTransporte();
     }
 
     @GetMapping("/api/tipo-transporte/{id}")
-    public TipoTransporte buscarTipoProducto(@PathVariable int id){
+    public TipoTransporte buscarTipoTransporte(@PathVariable int id){
         return tipoTransporteService.getTipoTransporteXId(id);
     }
 
     @PutMapping("/api/tipo-transporte/{id}")
-    public Mensaje editarTipoProducto(@PathVariable int id, @RequestBody TipoTransporte tipoTransporte){
+    public Mensaje editarTipoTransporte(@PathVariable int id, @RequestBody TipoTransporte tipoTransporte){
         return tipoTransporteService.updateTipoTransporte(id, tipoTransporte);
     }
 
     @DeleteMapping("/api/tipo-transporte/{id}")
-    public Mensaje borrarTipoProducto(@PathVariable int id){
+    public Mensaje borrarTipoTransporte(@PathVariable int id){
         return tipoTransporteService.borrarTipoTransporte(id);
     }
 

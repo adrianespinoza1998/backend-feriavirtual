@@ -13,6 +13,8 @@ public interface ITransporteRepository {
 
     List<Transportes> listarTransportesXUsuario (int id);
 
+    Transportes buscarTransporteXId(int id);
+
     boolean editarTransporte (int id, int idTipoTransporte, String marca, int capacidad, int peso, int idUsuario);
 
     boolean borrarTransporte (int id);
