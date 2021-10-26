@@ -52,7 +52,7 @@ public class ContratoRepositoryImpl implements IContratoRepository {
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_listar_contrato_all")
                 .returningResultSet("out_nombre_cursor",
-                        BeanPropertyRowMapper.newInstance(Contrato.class));
+                        BeanPropertyRowMapper.newInstance(ContratoJoin.class));
 
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue("in_firmado", firmado);
@@ -71,7 +71,7 @@ public class ContratoRepositoryImpl implements IContratoRepository {
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_listar_contrato_x_usuario")
                 .returningResultSet("out_pc_listar_contrato",
-                        BeanPropertyRowMapper.newInstance(Contrato.class));
+                        BeanPropertyRowMapper.newInstance(ContratoJoin.class));
 
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue("in_firmado", firmado)
