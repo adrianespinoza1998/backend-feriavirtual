@@ -1,10 +1,15 @@
 package com.feriavirtual.apirest.models;
 
+import java.util.Date;
+
 public class Contrato {
 
 	private int idContrato;
 	private int firmado;
 	private int idUsuario;
+	private String codigo;
+	private Date fechaIni;
+	private Date fechaFin;
 
 	public Contrato() {
 	}
@@ -33,12 +38,39 @@ public class Contrato {
 		this.idUsuario = idUsuario;
 	}
 
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public Date getFechaIni() {
+		return fechaIni;
+	}
+
+	public void setFechaIni(Date fechaIni) {
+		this.fechaIni = fechaIni;
+	}
+
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
 	@Override
 	public String toString() {
 		return "Contrato{" +
 				"idContrato=" + idContrato +
 				", firmado=" + firmado +
 				", idUsuario=" + idUsuario +
+				", codigo='" + codigo + '\'' +
+				", fechaIni=" + fechaIni +
+				", fechaFin=" + fechaFin +
 				'}';
 	}
 }

@@ -1,10 +1,10 @@
 package com.feriavirtual.apirest.controller;
 
 import com.feriavirtual.apirest.models.Contrato;
+import com.feriavirtual.apirest.models.ContratoJoin;
 import com.feriavirtual.apirest.models.Mensaje;
 import com.feriavirtual.apirest.service.IContratoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,12 +22,12 @@ public class ContratoController {
     }
 
     @GetMapping("/api/contrato/{firmado}")
-    public List<Contrato> listarContratos(@PathVariable int firmado){
+    public List<ContratoJoin> listarContratos(@PathVariable int firmado){
         return contratoService.listarContratos(firmado);
     }
 
     @GetMapping("/api/contrato/{id}/{firmado}")
-    public List<Contrato> listarContratosXUsuario(@PathVariable int id, @PathVariable int firmado){
+    public List<ContratoJoin> listarContratosXUsuario(@PathVariable int id, @PathVariable int firmado){
         return contratoService.listarContratosXUsuario(id,firmado);
     }
 

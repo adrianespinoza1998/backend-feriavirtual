@@ -1,24 +1,26 @@
 package com.feriavirtual.apirest.repository;
 
 import com.feriavirtual.apirest.models.Contrato;
+import com.feriavirtual.apirest.models.ContratoJoin;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 public interface IContratoRepository {
 
-    Map crearContrato(int firmado, int idUsuario);
+    boolean crearContrato(int firmado, int idUsuario, String codigo, Date fechaIni, Date fechaFin);
 
-    List<Contrato> listarContratos(int firmado);
+    List<ContratoJoin> listarContratos(int firmado);
 
-    List<Contrato> listarContratosXUsuario(int idUsuario, int firmado);
+    List<ContratoJoin> listarContratosXUsuario(int idUsuario, int firmado);
 
     Contrato getContrato(int idContrato);
 
-    Map editarContrato(int idContrato, int firmado, int idUsuario);
+    boolean editarContrato(int id, int firmado, int idUsuario, String codigo, Date fechaIni, Date fechaFin);
 
-    Map borrarContrato(int idContrato);
+    boolean borrarContrato(int idContrato);
 
     JdbcTemplate getJdbcTemplate();
 

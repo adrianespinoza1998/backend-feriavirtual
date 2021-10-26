@@ -1,6 +1,7 @@
 package com.feriavirtual.apirest.service.impl;
 
 import com.feriavirtual.apirest.models.Contrato;
+import com.feriavirtual.apirest.models.ContratoJoin;
 import com.feriavirtual.apirest.models.Mensaje;
 import com.feriavirtual.apirest.repository.IContratoRepository;
 import com.feriavirtual.apirest.service.IContratoService;
@@ -32,12 +33,11 @@ public class ContratoServiceImpl implements IContratoService {
         try{
             if(contrato.getIdUsuario()!=0 && contrato.getFirmado()!=0) {
 
-                Map crearContrato = contratoRepository.crearContrato(contrato.getFirmado(),
-                        contrato.getIdUsuario());
+                boolean crearContrato = contratoRepository.crearContrato(contrato.getFirmado(),
+                        contrato.getIdUsuario(),contrato.getCodigo(),contrato.getFechaIni(),
+                        contrato.getFechaFin());
 
-                BigDecimal verfCrearContrato = (BigDecimal) crearContrato.get("OUT_ESTADO");
-
-                if(verfCrearContrato.intValue()==0){
+                if(crearContrato){
                     mensaje.setMsg("Contrato con de el usuario con el id: " + contrato.getIdUsuario() + " creado de forma correcta");
 
                 }else{
@@ -60,13 +60,13 @@ public class ContratoServiceImpl implements IContratoService {
     }
 
     @Override
-    public List<Contrato> listarContratos(int firmado) {
+    public List<ContratoJoin> listarContratos(int firmado) {
         contratoRepository.setJdbcTemplate(jdbcTemplate);
         return contratoRepository.listarContratos(firmado);
     }
 
     @Override
-    public List<Contrato> listarContratosXUsuario(int idUsuario, int firmado) {
+    public List<ContratoJoin> listarContratosXUsuario(int idUsuario, int firmado) {
         contratoRepository.setJdbcTemplate(jdbcTemplate);
         return contratoRepository.listarContratosXUsuario(idUsuario,firmado);
     }
@@ -84,12 +84,11 @@ public class ContratoServiceImpl implements IContratoService {
         Mensaje objMensaje = new Mensaje();
 
         try {
-            Map updateContrato = contratoRepository.editarContrato(id, contrato.getFirmado(),
-                    contrato.getIdUsuario());
+            boolean updateContrato = contratoRepository.editarContrato(id, contrato.getFirmado(),
+                    contrato.getIdUsuario(), contrato.getCodigo(), contrato.getFechaIni(),
+                    contrato.getFechaFin());
 
-            BigDecimal verfUpdateContrato = (BigDecimal) updateContrato.get("OUT_ESTADO");
-
-            if (verfUpdateContrato.intValue() == 0) {
+            if (updateContrato) {
                 objMensaje.setMsg("Contrato con el id: " + id + " actualizado");
             } else {
                 objMensaje.setMsg("No se pudo actaulizar el contrato con el id: " + id);
@@ -114,11 +113,9 @@ public class ContratoServiceImpl implements IContratoService {
 
         try {
 
-            Map deleteContrato = contratoRepository.borrarContrato(id);
+            boolean deleteContrato = contratoRepository.borrarContrato(id);
 
-            BigDecimal verfDeleteContrato = (BigDecimal) deleteContrato.get("OUT_ESTADO");
-
-            if(verfDeleteContrato.intValue() == 0){
+            if(deleteContrato){
                 objMensaje.setMsg("Contrato con el id: " + id + " borrado");
             }else{
                 objMensaje.setMsg("No se pudo borrar el contrato con el id: " + id);

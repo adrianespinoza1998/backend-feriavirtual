@@ -1,6 +1,7 @@
 package com.feriavirtual.apirest.repository.impl;
 
 import com.feriavirtual.apirest.models.Contrato;
+import com.feriavirtual.apirest.models.ContratoJoin;
 import com.feriavirtual.apirest.repository.IContratoRepository;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -10,7 +11,9 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -22,21 +25,30 @@ public class ContratoRepositoryImpl implements IContratoRepository {
     private SimpleJdbcCall simpleJdbcCall;
 
     @Override
-    public Map crearContrato(int firmado, int idUsuario) {
+    public boolean crearContrato(int firmado, int idUsuario, String codigo, Date fechaIni, Date fechaFin) {
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_crear_contrato");
 
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue("in_firmado", firmado)
-                .addValue("in_id_usuario", idUsuario);
+                .addValue("in_id_usuario", idUsuario)
+                .addValue("in_codigo", codigo)
+                .addValue("in_fecha_ini", fechaIni)
+                .addValue("in_fecha_fin", fechaFin);
 
         Map out = simpleJdbcCall.execute(in);
 
-        return out;
+        BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+        if(verfOut.intValue() == 0){
+            return true;
+        }
+
+        return false;
     }
 
     @Override
-    public List<Contrato> listarContratos(int firmado) {
+    public List<ContratoJoin> listarContratos(int firmado) {
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_listar_contrato_all")
                 .returningResultSet("out_nombre_cursor",
@@ -55,7 +67,7 @@ public class ContratoRepositoryImpl implements IContratoRepository {
     }
 
     @Override
-    public List<Contrato> listarContratosXUsuario(int idUsuario,int firmado) {
+    public List<ContratoJoin> listarContratosXUsuario(int idUsuario,int firmado) {
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_listar_contrato_x_usuario")
                 .returningResultSet("out_pc_listar_contrato",
@@ -99,22 +111,28 @@ public class ContratoRepositoryImpl implements IContratoRepository {
     }
 
     @Override
-    public Map editarContrato(int idContrato, int firmado, int idUsuario) {
+    public boolean editarContrato(int id, int firmado, int idUsuario, String codigo, Date fechaIni, Date fechaFin) {
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_actualizar_contrato");
 
         SqlParameterSource in = new MapSqlParameterSource()
-                .addValue("in_id_contrato", idContrato)
+                .addValue("in_id_contrato", id)
                 .addValue("in_firmado", firmado)
                 .addValue("in_id_usuario", idUsuario);
 
         Map out = simpleJdbcCall.execute(in);
 
-        return out;
+        BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+        if(verfOut.intValue() == 0){
+            return true;
+        }
+
+        return false;
     }
 
     @Override
-    public Map borrarContrato(int idContrato) {
+    public boolean borrarContrato(int idContrato) {
 
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_del_contrato");
@@ -124,7 +142,13 @@ public class ContratoRepositoryImpl implements IContratoRepository {
 
         Map out = simpleJdbcCall.execute(in);
 
-        return out;
+        BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+        if(verfOut.intValue() == 0){
+            return true;
+        }
+
+        return false;
     }
 
     @Override

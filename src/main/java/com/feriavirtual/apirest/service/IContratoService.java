@@ -1,6 +1,7 @@
 package com.feriavirtual.apirest.service;
 
 import com.feriavirtual.apirest.models.Contrato;
+import com.feriavirtual.apirest.models.ContratoJoin;
 import com.feriavirtual.apirest.models.Mensaje;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -10,9 +11,9 @@ public interface IContratoService {
 
     Mensaje crearContrato(Contrato contrato);
 
-    List<Contrato> listarContratos(int firmado);
+    List<ContratoJoin> listarContratos(int firmado);
 
-    List<Contrato> listarContratosXUsuario(int idUsuario, int firmado);
+    List<ContratoJoin> listarContratosXUsuario(int idUsuario, int firmado);
 
     Contrato buscarContratoPorId(int id);
 
