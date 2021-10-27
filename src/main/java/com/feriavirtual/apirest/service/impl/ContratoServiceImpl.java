@@ -85,7 +85,7 @@ public class ContratoServiceImpl implements IContratoService {
 
         try {
             boolean updateContrato = contratoRepository.editarContrato(id, contrato.getFirmado(),
-                    contrato.getIdUsuario(), contrato.getCodigo(), contrato.getFechaIni(),
+                    contrato.getIdUsuario(), contrato.getCodigo().toUpperCase(), contrato.getFechaIni(),
                     contrato.getFechaFin());
 
             if (updateContrato) {

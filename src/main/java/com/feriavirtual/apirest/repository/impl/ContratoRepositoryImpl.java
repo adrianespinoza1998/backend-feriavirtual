@@ -118,7 +118,10 @@ public class ContratoRepositoryImpl implements IContratoRepository {
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue("in_id_contrato", id)
                 .addValue("in_firmado", firmado)
-                .addValue("in_id_usuario", idUsuario);
+                .addValue("in_id_usuario", idUsuario)
+                .addValue("in_codigo", codigo)
+                .addValue("in_fecha_ini", fechaIni)
+                .addValue("in_fecha_fin", fechaFin);
 
         Map out = simpleJdbcCall.execute(in);
 

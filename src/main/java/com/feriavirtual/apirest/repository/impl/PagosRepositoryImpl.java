@@ -1,8 +1,10 @@
 package com.feriavirtual.apirest.repository.impl;
 
+import com.feriavirtual.apirest.models.ContratoJoin;
 import com.feriavirtual.apirest.models.Pagos;
 import com.feriavirtual.apirest.repository.IPagosRepository;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -10,6 +12,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -44,17 +47,42 @@ public class PagosRepositoryImpl implements IPagosRepository {
     }
 
     @Override
-    public List<Pagos> listarPagos() {
-        return null;
+    public List<PagosJoin> listarPagos() {
+        simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+                .withProcedureName("sp_listar_pago_all")
+                .returningResultSet("out_nombre_cursor",
+                        BeanPropertyRowMapper.newInstance(PagosJoin.class));
+
+        Map out = simpleJdbcCall.execute();
+
+        if (out == null) {
+            return Collections.emptyList();
+        } else {
+            return (List) out.get("out_nombre_cursor");
+        }
     }
 
     @Override
-    public List<Pagos> listarPagosXUsuario(int id) {
-        return null;
+    public List<PagosJoin> listarPagosXUsuario(int id) {
+        simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
+                .withProcedureName("sp_listar_pago_all")
+                .returningResultSet("out_nombre_cursor",
+                        BeanPropertyRowMapper.newInstance(PagosJoin.class));
+
+        SqlParameterSource in = new MapSqlParameterSource()
+                .addValue("in_id_usuario", id);
+
+        Map out = simpleJdbcCall.execute(in);
+
+        if (out == null) {
+            return Collections.emptyList();
+        } else {
+            return (List) out.get("out_nombre_cursor");
+        }
     }
 
     @Override
-    public Pagos getPagoXId(int id) {
+    public PagosJoin getPagoXId(int id) {
         return null;
     }
 
@@ -70,11 +98,11 @@ public class PagosRepositoryImpl implements IPagosRepository {
 
     @Override
     public JdbcTemplate getJdbcTemplate() {
-        return null;
+        return jdbcTemplate;
     }
 
     @Override
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-
+        this.jdbcTemplate = jdbcTemplate;
     }
 }

@@ -1,5 +1,7 @@
 package com.feriavirtual.apirest.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Contrato {
@@ -8,7 +10,9 @@ public class Contrato {
 	private int firmado;
 	private int idUsuario;
 	private String codigo;
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 	private Date fechaIni;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 	private Date fechaFin;
 
 	public Contrato() {
