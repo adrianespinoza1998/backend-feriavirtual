@@ -1,11 +1,13 @@
-package com.feriavirtual.apirest.repository.impl;
+package com.feriavirtual.apirest.models;
+
+import java.math.BigInteger;
 
 public class PagosJoin {
 
     private String nombre;
     private String apPaterno;
     private int monto;
-    private int tarjeta;
+    private BigInteger tarjeta;
     private String sigla;
 
     public PagosJoin() {
@@ -35,11 +37,11 @@ public class PagosJoin {
         this.monto = monto;
     }
 
-    public int getTarjeta() {
+    public BigInteger getTarjeta() {
         return tarjeta;
     }
 
-    public void setTarjeta(int tarjeta) {
+    public void setTarjeta(BigInteger tarjeta) {
         this.tarjeta = tarjeta;
     }
 

@@ -1,8 +1,6 @@
 package com.feriavirtual.apirest.service.impl;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -36,11 +34,9 @@ public class PaisServiceImpl implements IPaisService {
 		Mensaje mensaje = new Mensaje();
 
 		try{
-			Map crearPais = paisRepository.crearPais(pais.getDescripcion().toUpperCase());
+			boolean crearPais = paisRepository.crearPais(pais.getDescripcion().toUpperCase());
 
-			BigDecimal verfCrearPais = (BigDecimal) crearPais.get("OUT_ESTADO");
-
-			if(verfCrearPais.intValue() == 0){
+			if(crearPais){
 				mensaje.setMsg("Pais " + pais.getDescripcion() + " creado de forma correcta");
 
 				return mensaje;
@@ -79,11 +75,9 @@ public class PaisServiceImpl implements IPaisService {
 		Mensaje objMensaje = new Mensaje();
 
 		try{
-			Map editarPais = paisRepository.editarPais(id, pais.getDescripcion().toUpperCase());
+			boolean editarPais = paisRepository.editarPais(id, pais.getDescripcion().toUpperCase());
 
-			BigDecimal verfEditarPais = (BigDecimal) editarPais.get("OUT_ESTADO");
-
-			if(verfEditarPais.intValue() == 0){
+			if(editarPais){
 				objMensaje.setMsg("País " + pais.getDescripcion() + " editado");
 
 				return objMensaje;
@@ -108,11 +102,9 @@ public class PaisServiceImpl implements IPaisService {
 		Mensaje objMensaje = new Mensaje();
 
 		try{
-			Map borrarPais = paisRepository.borrarPais(id);
+			boolean borrarPais = paisRepository.borrarPais(id);
 
-			BigDecimal verfBorrarPais = (BigDecimal) borrarPais.get("OUT_ESTADO");
-
-			if(verfBorrarPais.intValue() == 0){
+			if(borrarPais){
 				objMensaje.setMsg("País con el id: " + id + " borrado");
 
 				return objMensaje;

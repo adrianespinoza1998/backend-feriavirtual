@@ -1,5 +1,6 @@
 package com.feriavirtual.apirest.repository.impl;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +28,7 @@ public class PaisRepositoryImpl implements IPaisRepository {
 	}
 	
 	@Override
-	public Map crearPais(String descripcion) {
+	public boolean crearPais(String descripcion) {
 
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("sp_crear_pais");
@@ -37,7 +38,13 @@ public class PaisRepositoryImpl implements IPaisRepository {
 
 		Map out = simpleJdbcCall.execute(in);
 
-		return out;
+		BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+		if(verfOut.intValue() == 0){
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override
@@ -80,7 +87,7 @@ public class PaisRepositoryImpl implements IPaisRepository {
 	}
 
 	@Override
-	public Map editarPais(int id, String descripcion) {
+	public boolean editarPais(int id, String descripcion) {
 
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("sp_actualizar_pais");
@@ -91,11 +98,17 @@ public class PaisRepositoryImpl implements IPaisRepository {
 
 		Map out = simpleJdbcCall.execute(in);
 
-		return out;
+		BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+		if(verfOut.intValue() == 0){
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override
-	public Map borrarPais(int id) {
+	public boolean borrarPais(int id) {
 
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("sp_del_pais");
@@ -105,7 +118,13 @@ public class PaisRepositoryImpl implements IPaisRepository {
 
 		Map out = simpleJdbcCall.execute(in);
 
-		return out;
+		BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+		if(verfOut.intValue() == 0){
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override

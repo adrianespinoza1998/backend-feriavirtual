@@ -9,15 +9,15 @@ import com.feriavirtual.apirest.models.Pais;
 
 public interface IPaisRepository {
 	
-	Map crearPais(String descripcion);
+	boolean crearPais(String descripcion);
 	
 	List<Pais> listarPaises ();
 	
 	Pais buscarPaisPorId(int idPais);
 	
-	Map editarPais(int id, String descripcion);
+	boolean editarPais(int id, String descripcion);
 	
-	Map borrarPais(int id);
+	boolean borrarPais(int id);
 	
 	JdbcTemplate getJdbcTemplate();
 	
