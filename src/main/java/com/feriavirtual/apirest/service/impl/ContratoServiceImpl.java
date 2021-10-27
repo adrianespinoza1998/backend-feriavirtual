@@ -38,7 +38,7 @@ public class ContratoServiceImpl implements IContratoService {
                         contrato.getFechaFin());
 
                 if(crearContrato){
-                    mensaje.setMsg("Contrato con de el usuario con el id: " + contrato.getIdUsuario() + " creado de forma correcta");
+                    mensaje.setMsg("Contrato con el usuario con el id: " + contrato.getIdUsuario() + " creado de forma correcta");
 
                 }else{
                     mensaje.setMsg("Contrato del usuario con el id: "+ contrato.getIdUsuario() + " no se pudo crear");
