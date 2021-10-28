@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public class MonedaRepositoryImpl implements IMonedaRepository {
     private SimpleJdbcCall simpleJdbcCall;
 
     @Override
-    public Map crearMoneda(String descripcion, String sigla) {
+    public boolean crearMoneda(String descripcion, String sigla) {
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_crear_moneda");
 
@@ -31,7 +32,13 @@ public class MonedaRepositoryImpl implements IMonedaRepository {
 
         Map out = simpleJdbcCall.execute(in);
 
-        return out;
+        BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+        if(verfOut.intValue() == 0){
+            return true;
+        }
+
+        return false;
     }
 
     @Override
@@ -73,7 +80,7 @@ public class MonedaRepositoryImpl implements IMonedaRepository {
     }
 
     @Override
-    public Map editarMoneda(int idMoneda, String descripcion, String sigla) {
+    public boolean editarMoneda(int idMoneda, String descripcion, String sigla) {
 
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_actualizar_moneda");
@@ -85,11 +92,17 @@ public class MonedaRepositoryImpl implements IMonedaRepository {
 
         Map out = simpleJdbcCall.execute(in);
 
-        return out;
+        BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+        if(verfOut.intValue() == 0){
+            return true;
+        }
+
+        return false;
     }
 
     @Override
-    public Map borrarMoneda(int idMoneda) {
+    public boolean borrarMoneda(int idMoneda) {
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_del_moneda");
 
@@ -98,7 +111,13 @@ public class MonedaRepositoryImpl implements IMonedaRepository {
 
         Map out = simpleJdbcCall.execute(in);
 
-        return out;
+        BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+        if(verfOut.intValue() == 0){
+            return true;
+        }
+
+        return false;
     }
 
     @Override

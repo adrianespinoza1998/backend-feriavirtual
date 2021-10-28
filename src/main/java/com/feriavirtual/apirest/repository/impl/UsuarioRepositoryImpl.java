@@ -132,14 +132,14 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository{
 	}
 
 	@Override
-	public boolean borrarUsuario(int idUsuario) {
+	public boolean borrarUsuario(int idUsuario, int estado) {
 
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("sp_desactivar_usuario");
 
 		SqlParameterSource in = new MapSqlParameterSource()
 				.addValue("in_id_usuario", idUsuario)
-				.addValue("in_id_estado", 2);
+				.addValue("in_id_estado", estado);
 		Map out = simpleJdbcCall.execute(in);
 
 		BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");

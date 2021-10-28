@@ -8,15 +8,15 @@ import java.util.Map;
 
 public interface IMonedaRepository {
 
-    Map crearMoneda(String descripcion, String sigla);
+    boolean crearMoneda(String descripcion, String sigla);
 
     List<Moneda> listarMonedas();
 
     Moneda getMonedaById(int idMoneda);
 
-    Map editarMoneda(int idMoneda, String descripcion, String sigla);
+    boolean editarMoneda(int idMoneda, String descripcion, String sigla);
 
-    Map borrarMoneda(int idMoneda);
+    boolean borrarMoneda(int idMoneda);
 
     JdbcTemplate getJdbcTemplate();
 

@@ -20,7 +20,7 @@ public interface IUsuarioService {
 	
 	Mensaje updateUsuario(Usuario usuario, int id);
 
-	Mensaje borrarUsuario(int id);
+	Mensaje borrarUsuario(int id, int estado);
 	
 	Usuario verificarUsuario (Usuario usuario);
 }

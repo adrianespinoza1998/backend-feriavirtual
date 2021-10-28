@@ -1,8 +1,6 @@
 package com.feriavirtual.apirest.repository.impl;
 
-import com.feriavirtual.apirest.models.DetalleVenta;
 import com.feriavirtual.apirest.models.DetalleVentaJoin;
-import com.feriavirtual.apirest.models.SolicitudProductos;
 import com.feriavirtual.apirest.repository.IDetVentaRepository;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

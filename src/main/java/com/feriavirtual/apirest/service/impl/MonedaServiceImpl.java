@@ -33,12 +33,10 @@ public class MonedaServiceImpl implements IMonedaService {
             if(moneda.getSigla()!=null && !moneda.getSigla().equals("")
                     && moneda.getDescripcion()!=null && !moneda.getDescripcion().equals("")){
 
-                Map crearMoneda = monedaRepository.crearMoneda(moneda.getDescripcion().toUpperCase(),
+                boolean crearMoneda = monedaRepository.crearMoneda(moneda.getDescripcion().toUpperCase(),
                         moneda.getSigla().toUpperCase());
 
-                BigDecimal verfCrearMoneda = (BigDecimal) crearMoneda.get("OUT_ESTADO");
-
-                if(verfCrearMoneda.intValue()==0){
+                if(crearMoneda){
                     mensaje.setMsg("Moneda " + moneda.getDescripcion()
                             + " creado de forma correcta");
                 }else{
@@ -83,12 +81,10 @@ public class MonedaServiceImpl implements IMonedaService {
             if(moneda.getSigla()!=null && !moneda.getSigla().equals("")
                     && moneda.getDescripcion()!=null && !moneda.getDescripcion().equals("")){
 
-                Map updateMoneda = monedaRepository.editarMoneda(idMoneda,moneda.getDescripcion().toUpperCase(),
+                boolean updateMoneda = monedaRepository.editarMoneda(idMoneda,moneda.getDescripcion().toUpperCase(),
                         moneda.getSigla().toUpperCase());
 
-                BigDecimal verfUpdateMoneda = (BigDecimal) updateMoneda.get("OUT_ESTADO");
-
-                if(verfUpdateMoneda.intValue()==0){
+                if(updateMoneda){
                     mensaje.setMsg("Moneda " + moneda.getDescripcion()
                             + " editada de forma correcta");
                 }else{
@@ -118,11 +114,9 @@ public class MonedaServiceImpl implements IMonedaService {
         Mensaje mensaje = new Mensaje();
 
         try{
-            Map borrarMoneda = monedaRepository.borrarMoneda(idMoneda);
+            boolean borrarMoneda = monedaRepository.borrarMoneda(idMoneda);
 
-            BigDecimal verfBorrarMoneda = (BigDecimal) borrarMoneda.get("OUT_ESTADO");
-
-            if(verfBorrarMoneda.intValue()==0){
+            if(borrarMoneda){
                 mensaje.setMsg("Moneda con el id: " + idMoneda
                         + " borrada de forma correcta");
             }else{
