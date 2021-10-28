@@ -1,0 +1,50 @@
+package com.feriavirtual.apirest.controller;
+
+import com.feriavirtual.apirest.models.DetalleSolProductos;
+import com.feriavirtual.apirest.models.DetalleVenta;
+import com.feriavirtual.apirest.models.DetalleVentaJoin;
+import com.feriavirtual.apirest.models.Mensaje;
+import com.feriavirtual.apirest.service.IDetSolProdService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
+public class DetSolProdController {
+
+    @Autowired
+    private IDetSolProdService detSolProdService;
+
+    @PostMapping("/api/det-sol-prod")
+    public Mensaje crearDetSolProd(@RequestBody DetalleSolProductos detSolProd){
+        return detSolProdService.crearDetSolProd(detSolProd);
+    }
+
+    @GetMapping("/api/det-sol-prod")
+    public List<DetalleSolProductos> listarDetSolProd(){
+        return detSolProdService.listarDetSolProd();
+    }
+
+    @GetMapping("/api/det-sol-prod/{id}")
+    public DetalleSolProductos getDetSolProdXId(@PathVariable int id){
+        return detSolProdService.getDetSolProdXId(id);
+    }
+
+    @GetMapping("/api/det-sol-prod/sol/{id}")
+    public DetalleSolProductos getDetSolProdXSol(@PathVariable int id){
+        return detSolProdService.getDetSolProdXSol(id);
+    }
+
+    @PutMapping("/api/det-sol-prod/{id}")
+    public Mensaje updateDetSolProd(@PathVariable int id, @RequestBody DetalleSolProductos detSolProd){
+        return detSolProdService.editarDetSolProd(id, detSolProd);
+    }
+
+    @DeleteMapping("/api/det-sol-prod/{id}")
+    public Mensaje deleteContrato(@PathVariable int id){
+        return detSolProdService.borrarDetSolProd(id);
+    }
+
+}

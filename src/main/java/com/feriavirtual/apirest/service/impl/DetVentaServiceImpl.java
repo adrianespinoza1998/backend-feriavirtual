@@ -42,7 +42,7 @@ public class DetVentaServiceImpl implements IDetVentaService {
                         " creado de forma correcta");
 
             }else{
-                mensaje.setMsg("etalle venta con el id producto: "+ objDetVenta.getIdProducto() +
+                mensaje.setMsg("Detalle venta con el id producto: "+ objDetVenta.getIdProducto() +
                         " no se pudo crear");
             }
 
@@ -85,7 +85,7 @@ public class DetVentaServiceImpl implements IDetVentaService {
                 return mensaje;
             }
 
-            mensaje.setMsg("No se pudo editar el producto con el id: " + id);
+            mensaje.setMsg("No se pudo editar el detalle venta con el id: " + id);
 
             return mensaje;
         }catch (Exception e){

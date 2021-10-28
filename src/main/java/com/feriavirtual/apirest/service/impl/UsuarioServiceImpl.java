@@ -117,7 +117,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	}
 
 	@Override
-	public Mensaje borrarUsuario(int id, int estado) {
+	public Mensaje cambiarEstadoUsuario(int id, int estado) {
 		
 		usuarioRepository.setJdbcTemplate(jdbcTemplate);
 		
@@ -125,11 +125,15 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		
 		try {
 			
-			boolean deleteUsuario = usuarioRepository.borrarUsuario(id, estado);
+			boolean deleteUsuario = usuarioRepository.cambiarEstadoUsuario(id, estado);
 			
 			if(deleteUsuario) {
-				
-				objMensaje.setMsg("Usuario con el id: " + id + " borrado");
+
+				if(estado == 1){
+					objMensaje.setMsg("Usuario con el id: " + id + " activado");
+				}else{
+					objMensaje.setMsg("Usuario con el id: " + id + " borrado");
+				}
 
 			}else {
 				

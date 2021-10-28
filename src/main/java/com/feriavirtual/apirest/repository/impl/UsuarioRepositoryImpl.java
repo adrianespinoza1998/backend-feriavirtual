@@ -132,7 +132,7 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository{
 	}
 
 	@Override
-	public boolean borrarUsuario(int idUsuario, int estado) {
+	public boolean cambiarEstadoUsuario(int idUsuario, int estado) {
 
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("sp_desactivar_usuario");

@@ -54,8 +54,8 @@ public class UsuarioController {
 	}
 	
 	@DeleteMapping("/api/usuario/{id}/{estado}")
-	public Mensaje borrarUsuario(@PathVariable int id, @PathVariable int estado) {
-		return usuarioService.borrarUsuario(id, estado);
+	public Mensaje cambiarEstadoUsuario(@PathVariable int id, @PathVariable int estado) {
+		return usuarioService.cambiarEstadoUsuario(id, estado);
 	}
 
 

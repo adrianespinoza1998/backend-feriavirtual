@@ -12,7 +12,6 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
-import java.time.Duration;
 import java.util.*;
 
 @Repository

@@ -20,7 +20,7 @@ public interface IUsuarioRepository {
 	boolean editarUsuario(int id, String nombre, String apPaterno, String apMaterno, String dni, String direccion, String codPostal,
 			String correo, String usuario, String contrasena, int idPais, int idRol, int termCond);
 	
-	boolean borrarUsuario(int idUsuario, int estado);
+	boolean cambiarEstadoUsuario(int idUsuario, int estado);
 	
 	Usuario verificarUsuario(String correo);
 	

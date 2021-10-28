@@ -15,7 +15,7 @@ public interface IDetSolProdRepository {
 
     DetalleSolProductos getDetSolProdXId (int id);
 
-    boolean editarDetSolProd (int id, DetalleSolProductos detSolProd);
+    boolean editarDetSolProd (int id, int idProducto, int idSolicitudProductos, int cantidad);
 
     boolean eliminarDetSolProd (int id);
 
