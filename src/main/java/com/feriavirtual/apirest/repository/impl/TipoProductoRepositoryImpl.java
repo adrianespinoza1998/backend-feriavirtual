@@ -3,6 +3,7 @@ package com.feriavirtual.apirest.repository.impl;
 import com.feriavirtual.apirest.models.TipoProducto;
 import com.feriavirtual.apirest.repository.ITipoProductoRepository;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -10,19 +11,21 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-@Repository
 @Configurable
+@Repository
+@EnableAutoConfiguration
 public class TipoProductoRepositoryImpl implements ITipoProductoRepository {
 
     private JdbcTemplate jdbcTemplate;
     private SimpleJdbcCall simpleJdbcCall;
 
     @Override
-    public Map crearTipoProducto(String descripcion) {
+    public boolean crearTipoProducto(String descripcion) {
 
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_crear_tipo_producto");
@@ -32,7 +35,13 @@ public class TipoProductoRepositoryImpl implements ITipoProductoRepository {
 
         Map out = simpleJdbcCall.execute(in);
 
-        return out;
+        BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+        if(verfOut.intValue() == 0){
+            return true;
+        }
+
+        return false;
     }
 
     @Override
@@ -76,7 +85,7 @@ public class TipoProductoRepositoryImpl implements ITipoProductoRepository {
     }
 
     @Override
-    public Map editarTipoProducto(int id, String descripcion) {
+    public boolean editarTipoProducto(int id, String descripcion) {
 
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_actualizar_tipo_producto");
@@ -87,11 +96,17 @@ public class TipoProductoRepositoryImpl implements ITipoProductoRepository {
 
         Map out = simpleJdbcCall.execute(in);
 
-        return out;
+        BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+        if(verfOut.intValue() == 0){
+            return true;
+        }
+
+        return false;
     }
 
     @Override
-    public Map borrarTipoProducto(int id) {
+    public boolean borrarTipoProducto(int id) {
 
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_del_tipo_producto");
@@ -101,7 +116,13 @@ public class TipoProductoRepositoryImpl implements ITipoProductoRepository {
 
         Map out = simpleJdbcCall.execute(in);
 
-        return out;
+        BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+        if(verfOut.intValue() == 0){
+            return true;
+        }
+
+        return false;
     }
 
     @Override

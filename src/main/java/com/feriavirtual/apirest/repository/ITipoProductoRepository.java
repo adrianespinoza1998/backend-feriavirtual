@@ -8,15 +8,15 @@ import java.util.Map;
 
 public interface ITipoProductoRepository {
 
-    Map crearTipoProducto(String descripcion);
+    boolean crearTipoProducto(String descripcion);
 
     List<TipoProducto> listarTipoProducto();
 
     TipoProducto buscarTipoProductoXId(int id);
 
-    Map editarTipoProducto(int id, String descripcion);
+    boolean editarTipoProducto(int id, String descripcion);
 
-    Map borrarTipoProducto(int id);
+    boolean borrarTipoProducto(int id);
 
     JdbcTemplate getJdbcTemplate();
 

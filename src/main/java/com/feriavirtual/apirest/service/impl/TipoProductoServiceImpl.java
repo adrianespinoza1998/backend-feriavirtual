@@ -6,6 +6,7 @@ import com.feriavirtual.apirest.repository.ITipoProductoRepository;
 import com.feriavirtual.apirest.service.ITipoProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,9 @@ import java.util.List;
 import java.util.Map;
 
 
-@Service
 @Configurable
+@Service
+@EnableAutoConfiguration
 public class TipoProductoServiceImpl implements ITipoProductoService {
 
     @Autowired
@@ -32,12 +34,10 @@ public class TipoProductoServiceImpl implements ITipoProductoService {
 
         try{
 
-            Map crearTipoProducto = tipoProductoRepository
+            boolean crearTipoProducto = tipoProductoRepository
                     .crearTipoProducto(tipoProducto.getDescripcion().toUpperCase());
 
-            BigDecimal verfCrearTipoProducto = (BigDecimal) crearTipoProducto.get("OUT_ESTADO");
-
-            if(verfCrearTipoProducto.intValue() == 0){
+            if(crearTipoProducto){
                 mensaje.setMsg("Tipo producto " +tipoProducto.getDescripcion()+" creado de forma correcta");
 
                 return mensaje;
@@ -75,12 +75,10 @@ public class TipoProductoServiceImpl implements ITipoProductoService {
         Mensaje mensaje = new Mensaje();
         try{
 
-            Map editarTipoProducto = tipoProductoRepository
+            boolean editarTipoProducto = tipoProductoRepository
                     .editarTipoProducto(id, tipoProducto.getDescripcion().toUpperCase());
 
-            BigDecimal verfEditarTipoProducto = (BigDecimal) editarTipoProducto.get("OUT_ESTADO");
-
-            if(verfEditarTipoProducto.intValue() == 0){
+            if(editarTipoProducto){
                 mensaje.setMsg("Tipo producto " + tipoProducto.getDescripcion() +
                         " editado de forma correcta");
 
@@ -106,11 +104,9 @@ public class TipoProductoServiceImpl implements ITipoProductoService {
         Mensaje mensaje = new Mensaje();
 
         try{
-            Map borrarTipoProducto = tipoProductoRepository.borrarTipoProducto(id);
+            boolean borrarTipoProducto = tipoProductoRepository.borrarTipoProducto(id);
 
-            BigDecimal verfBorrarTipoProducto = (BigDecimal) borrarTipoProducto.get("OUT_ESTADO");
-
-            if(verfBorrarTipoProducto.intValue() == 0){
+            if(borrarTipoProducto){
                 mensaje.setMsg("Tipo producto con el id: " + id + " borrado");
 
                 return mensaje;

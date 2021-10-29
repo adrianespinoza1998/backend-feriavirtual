@@ -7,18 +7,14 @@ import com.feriavirtual.apirest.repository.IDetVentaRepository;
 import com.feriavirtual.apirest.service.IDetVentaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
-@Service
 @Configurable
+@Service
+@EnableAutoConfiguration
 public class DetVentaServiceImpl implements IDetVentaService {
 
     @Autowired

@@ -8,15 +8,15 @@ import java.util.Map;
 
 public interface ICiudadRepository {
 
-    Map crearCiudad(String descripcion, int idPais);
+    boolean crearCiudad(String descripcion, int idPais);
 
     List<Ciudad> listarCiudades(int idPais);
 
     Ciudad getCiudadById(int idCiudad);
 
-    Map editarCiudad(int idCiudad, String descripcion, int idPais);
+    boolean editarCiudad(int idCiudad, String descripcion, int idPais);
 
-    Map borrarCiudad(int idCiudad);
+    boolean borrarCiudad(int idCiudad);
 
     JdbcTemplate getJdbcTemplate();
 

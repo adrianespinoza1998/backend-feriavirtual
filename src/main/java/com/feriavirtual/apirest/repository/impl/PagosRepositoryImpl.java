@@ -4,6 +4,7 @@ import com.feriavirtual.apirest.models.Pagos;
 import com.feriavirtual.apirest.models.PagosJoin;
 import com.feriavirtual.apirest.repository.IPagosRepository;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -17,8 +18,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-@Repository
 @Configurable
+@Repository
+@EnableAutoConfiguration
 public class PagosRepositoryImpl implements IPagosRepository {
 
     private JdbcTemplate jdbcTemplate;

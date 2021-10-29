@@ -4,6 +4,7 @@ import com.feriavirtual.apirest.models.Contrato;
 import com.feriavirtual.apirest.models.ContratoJoin;
 import com.feriavirtual.apirest.repository.IContratoRepository;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -14,8 +15,9 @@ import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
 import java.util.*;
 
-@Repository
 @Configurable
+@Repository
+@EnableAutoConfiguration
 public class ContratoRepositoryImpl implements IContratoRepository {
 
     private JdbcTemplate jdbcTemplate;

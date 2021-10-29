@@ -6,13 +6,15 @@ import com.feriavirtual.apirest.repository.IDetSolProdRepository;
 import com.feriavirtual.apirest.service.IDetSolProdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 @Configurable
+@Service
+@EnableAutoConfiguration
 public class DetSolProdServiceImpl implements IDetSolProdService {
 
     @Autowired

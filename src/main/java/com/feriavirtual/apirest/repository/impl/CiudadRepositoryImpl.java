@@ -3,6 +3,7 @@ package com.feriavirtual.apirest.repository.impl;
 import com.feriavirtual.apirest.models.Ciudad;
 import com.feriavirtual.apirest.repository.ICiudadRepository;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -10,18 +11,20 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
-@Repository
 @Configurable
+@Repository
+@EnableAutoConfiguration
 public class CiudadRepositoryImpl implements ICiudadRepository {
 
     private JdbcTemplate jdbcTemplate;
     private SimpleJdbcCall simpleJdbcCall;
 
     @Override
-    public Map crearCiudad(String descripcion,int idPais) {
+    public boolean crearCiudad(String descripcion,int idPais) {
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_crear_ciudad");
 
@@ -31,7 +34,13 @@ public class CiudadRepositoryImpl implements ICiudadRepository {
 
         Map out = simpleJdbcCall.execute(in);
 
-        return out;
+        BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+        if(verfOut.intValue() == 0){
+            return true;
+        }
+
+        return false;
     }
 
     @Override
@@ -75,7 +84,7 @@ public class CiudadRepositoryImpl implements ICiudadRepository {
     }
 
     @Override
-    public Map editarCiudad(int idCiudad, String descripcion, int idPais) {
+    public boolean editarCiudad(int idCiudad, String descripcion, int idPais) {
 
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_actualizar_ciudad");
@@ -87,11 +96,17 @@ public class CiudadRepositoryImpl implements ICiudadRepository {
 
         Map out = simpleJdbcCall.execute(in);
 
-        return out;
+        BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+        if(verfOut.intValue() == 0){
+            return true;
+        }
+
+        return false;
     }
 
     @Override
-    public Map borrarCiudad(int idCiudad) {
+    public boolean borrarCiudad(int idCiudad) {
 
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_del_ciudad");
@@ -101,7 +116,13 @@ public class CiudadRepositoryImpl implements ICiudadRepository {
 
         Map out = simpleJdbcCall.execute(in);
 
-        return out;
+        BigDecimal verfOut = (BigDecimal) out.get("OUT_ESTADO");
+
+        if(verfOut.intValue() == 0){
+            return true;
+        }
+
+        return false;
     }
 
     @Override

@@ -6,15 +6,15 @@ import com.feriavirtual.apirest.repository.ICiudadRepository;
 import com.feriavirtual.apirest.service.ICiudadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
-@Service
 @Configurable
+@Service
+@EnableAutoConfiguration
 public class CiudadServiceImpl implements ICiudadService {
 
     @Autowired
@@ -34,12 +34,10 @@ public class CiudadServiceImpl implements ICiudadService {
             if (ciudad.getDescripcion() != null && !ciudad.getDescripcion().equals("") &&
                     ciudad.getIdPais() != 0) {
 
-                Map crearCiudad = ciudadRepository.crearCiudad(ciudad.getDescripcion().toUpperCase(),
+                boolean crearCiudad = ciudadRepository.crearCiudad(ciudad.getDescripcion().toUpperCase(),
                         ciudad.getIdPais());
 
-                BigDecimal verfCrearCiudad = (BigDecimal) crearCiudad.get("OUT_ESTADO");
-
-                if (verfCrearCiudad.intValue() == 0) {
+                if (crearCiudad) {
                     mensaje.setMsg("Ciudad " + ciudad.getDescripcion()
                             + " creado de forma correcta");
                 } else {
@@ -82,12 +80,10 @@ public class CiudadServiceImpl implements ICiudadService {
             if (ciudad.getDescripcion() != null && !ciudad.getDescripcion().equals("") &&
                     ciudad.getIdPais() != 0) {
 
-                Map updateCiudad = ciudadRepository.editarCiudad(idCiudad, ciudad.getDescripcion().toUpperCase(),
+                boolean updateCiudad = ciudadRepository.editarCiudad(idCiudad, ciudad.getDescripcion().toUpperCase(),
                         ciudad.getIdPais());
 
-                BigDecimal verfUpdateCiudad = (BigDecimal) updateCiudad.get("OUT_ESTADO");
-
-                if(verfUpdateCiudad.intValue() == 0){
+                if(updateCiudad){
                     mensaje.setMsg("Ciudad " + ciudad.getDescripcion()
                             + " editada de forma correcta");
                 }else{
@@ -115,11 +111,9 @@ public class CiudadServiceImpl implements ICiudadService {
         Mensaje mensaje = new Mensaje();
 
         try {
-            Map deleteCiudad = ciudadRepository.borrarCiudad(idCiudad);
+            boolean deleteCiudad = ciudadRepository.borrarCiudad(idCiudad);
 
-            BigDecimal verfDeleteCiudad = (BigDecimal) deleteCiudad.get("OUT_ESTADO");
-
-            if(verfDeleteCiudad.intValue() == 0){
+            if(deleteCiudad){
                 mensaje.setMsg("Ciudad con el id " + idCiudad
                         + " editada de forma correcta");
             }else{

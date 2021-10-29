@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -16,8 +17,9 @@ import org.springframework.stereotype.Repository;
 import com.feriavirtual.apirest.models.Pais;
 import com.feriavirtual.apirest.repository.IPaisRepository;
 
-@Repository
 @Configurable
+@Repository
+@EnableAutoConfiguration
 public class PaisRepositoryImpl implements IPaisRepository {
 
 	private JdbcTemplate jdbcTemplate;

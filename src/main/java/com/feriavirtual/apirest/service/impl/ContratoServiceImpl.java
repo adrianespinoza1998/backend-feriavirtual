@@ -7,6 +7,7 @@ import com.feriavirtual.apirest.repository.IContratoRepository;
 import com.feriavirtual.apirest.service.IContratoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,9 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
-@Service
 @Configurable
+@Service
+@EnableAutoConfiguration
 public class ContratoServiceImpl implements IContratoService {
 
     @Autowired
