@@ -37,9 +37,11 @@ public class ContratoServiceImpl implements IContratoService {
         try{
             if(contrato.getIdUsuario()!=0 && contrato.getFirmado()!=0) {
 
+                Date fechaIni = addDays(contrato.getFechaIni(), 1);
+                Date fechaFin = addDays(contrato.getFechaFin(),1);
+
                 boolean crearContrato = contratoRepository.crearContrato(contrato.getFirmado(),
-                        contrato.getIdUsuario(),contrato.getCodigo(),contrato.getFechaIni(),
-                        contrato.getFechaFin());
+                        contrato.getIdUsuario(),contrato.getCodigo(),fechaIni, fechaFin);
 
                 if(crearContrato){
                     mensaje.setMsg("Contrato con el usuario con el id: " + contrato.getIdUsuario() + " creado de forma correcta");
