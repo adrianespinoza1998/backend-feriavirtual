@@ -28,15 +28,12 @@ public class ContratoRepositoryImpl implements IContratoRepository {
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_crear_contrato");
 
-        Date fechaIniAdd = addDays(fechaIni, 1);
-        Date fechaFinAdd = addDays(fechaFin, 1);
-
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue("in_firmado", firmado)
                 .addValue("in_id_usuario", idUsuario)
                 .addValue("in_codigo", codigo)
-                .addValue("in_fecha_ini", fechaIniAdd)
-                .addValue("in_fecha_fin", fechaFinAdd);
+                .addValue("in_fecha_ini", fechaIni)
+                .addValue("in_fecha_fin", fechaFin);
 
         Map out = simpleJdbcCall.execute(in);
 
@@ -117,16 +114,13 @@ public class ContratoRepositoryImpl implements IContratoRepository {
         simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("sp_actualizar_contrato");
 
-        Date fechaIniAdd = addDays(fechaIni, 1);
-        Date fechaFinAdd = addDays(fechaFin, 1);
-
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue("in_id_contrato", id)
                 .addValue("in_firmado", firmado)
                 .addValue("in_id_usuario", idUsuario)
                 .addValue("in_codigo", codigo)
-                .addValue("in_fecha_ini", fechaIniAdd)
-                .addValue("in_fecha_fin", fechaFinAdd);
+                .addValue("in_fecha_ini", fechaIni)
+                .addValue("in_fecha_fin", fechaFin);
 
         Map out = simpleJdbcCall.execute(in);
 
@@ -167,12 +161,5 @@ public class ContratoRepositoryImpl implements IContratoRepository {
     @Override
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-    }
-
-    private Date addDays(Date date, int days){
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        cal.add(Calendar.DATE, days); //minus number would decrement the days
-        return cal.getTime();
     }
 }

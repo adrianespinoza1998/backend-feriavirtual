@@ -12,6 +12,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -86,9 +88,12 @@ public class ContratoServiceImpl implements IContratoService {
         Mensaje objMensaje = new Mensaje();
 
         try {
+            Date fechaIni = addDays(contrato.getFechaIni(), 1);
+            Date fechaFin = addDays(contrato.getFechaFin(),1);
+
             boolean updateContrato = contratoRepository.editarContrato(id, contrato.getFirmado(),
-                    contrato.getIdUsuario(), contrato.getCodigo().toUpperCase(), contrato.getFechaIni(),
-                    contrato.getFechaFin());
+                    contrato.getIdUsuario(), contrato.getCodigo().toUpperCase(), fechaIni,
+                    fechaFin);
 
             if (updateContrato) {
                 objMensaje.setMsg("Contrato con el id: " + id + " actualizado");
@@ -131,5 +136,12 @@ public class ContratoServiceImpl implements IContratoService {
             return objMensaje;
         }
 
+    }
+
+    private Date addDays(Date date, int days){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days); //minus number would decrement the days
+        return cal.getTime();
     }
 }
