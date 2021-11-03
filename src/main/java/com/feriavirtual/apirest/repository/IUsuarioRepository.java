@@ -1,12 +1,11 @@
 package com.feriavirtual.apirest.repository;
 
 import java.util.List;
-import java.util.Map;
 
-import com.feriavirtual.apirest.models.UsuarioJoin;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.feriavirtual.apirest.models.Usuario;
+import com.feriavirtual.apirest.models.UsuarioJoin;
 
 public interface IUsuarioRepository {
 	

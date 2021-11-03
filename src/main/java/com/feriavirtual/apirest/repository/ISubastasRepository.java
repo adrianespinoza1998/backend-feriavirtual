@@ -1,9 +1,10 @@
 package com.feriavirtual.apirest.repository;
 
-import com.feriavirtual.apirest.models.Subastas;
+import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.List;
+import com.feriavirtual.apirest.models.Subastas;
 
 public interface ISubastasRepository {
 

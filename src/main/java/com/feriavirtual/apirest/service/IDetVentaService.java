@@ -1,10 +1,10 @@
 package com.feriavirtual.apirest.service;
 
+import java.util.List;
+
 import com.feriavirtual.apirest.models.DetalleVenta;
 import com.feriavirtual.apirest.models.DetalleVentaJoin;
 import com.feriavirtual.apirest.models.Mensaje;
-
-import java.util.List;
 
 public interface IDetVentaService {
 

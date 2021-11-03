@@ -1,9 +1,9 @@
 package com.feriavirtual.apirest.service;
 
+import java.util.List;
+
 import com.feriavirtual.apirest.models.Mensaje;
 import com.feriavirtual.apirest.models.Subastas;
-
-import java.util.List;
 
 public interface ISubastasService {
 

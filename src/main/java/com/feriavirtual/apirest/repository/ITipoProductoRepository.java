@@ -1,10 +1,10 @@
 package com.feriavirtual.apirest.repository;
 
-import com.feriavirtual.apirest.models.TipoProducto;
+import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.List;
-import java.util.Map;
+import com.feriavirtual.apirest.models.TipoProducto;
 
 public interface ITipoProductoRepository {
 

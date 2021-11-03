@@ -1,11 +1,9 @@
 package com.feriavirtual.apirest.repository.impl;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import com.feriavirtual.apirest.models.UsuarioJoin;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -16,6 +14,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 import com.feriavirtual.apirest.models.Usuario;
+import com.feriavirtual.apirest.models.UsuarioJoin;
 import com.feriavirtual.apirest.repository.IUsuarioRepository;
 
 @Configurable

@@ -1,12 +1,12 @@
 package com.feriavirtual.apirest.repository;
 
-import com.feriavirtual.apirest.models.Contrato;
-import com.feriavirtual.apirest.models.ContratoJoin;
-import org.springframework.jdbc.core.JdbcTemplate;
-
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.feriavirtual.apirest.models.Contrato;
+import com.feriavirtual.apirest.models.ContratoJoin;
 
 public interface IContratoRepository {
 

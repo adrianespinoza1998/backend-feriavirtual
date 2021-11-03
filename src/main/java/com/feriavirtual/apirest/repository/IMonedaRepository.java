@@ -1,10 +1,10 @@
 package com.feriavirtual.apirest.repository;
 
-import com.feriavirtual.apirest.models.Moneda;
+import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.List;
-import java.util.Map;
+import com.feriavirtual.apirest.models.Moneda;
 
 public interface IMonedaRepository {
 

@@ -1,10 +1,10 @@
 package com.feriavirtual.apirest.service;
 
+import java.util.List;
+
 import com.feriavirtual.apirest.models.Mensaje;
 import com.feriavirtual.apirest.models.Pagos;
 import com.feriavirtual.apirest.models.PagosJoin;
-
-import java.util.List;
 
 public interface IPagosService {
 

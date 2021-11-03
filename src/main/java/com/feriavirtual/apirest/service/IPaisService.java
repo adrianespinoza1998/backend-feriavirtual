@@ -1,9 +1,6 @@
 package com.feriavirtual.apirest.service;
 
 import java.util.List;
-import java.util.Map;
-
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.feriavirtual.apirest.models.Mensaje;
 import com.feriavirtual.apirest.models.Pais;

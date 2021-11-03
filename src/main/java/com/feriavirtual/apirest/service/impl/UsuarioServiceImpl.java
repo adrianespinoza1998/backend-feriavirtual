@@ -2,7 +2,6 @@ package com.feriavirtual.apirest.service.impl;
 
 import java.util.List;
 
-import com.feriavirtual.apirest.models.UsuarioJoin;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.feriavirtual.apirest.models.Mensaje;
 import com.feriavirtual.apirest.models.Usuario;
+import com.feriavirtual.apirest.models.UsuarioJoin;
 import com.feriavirtual.apirest.repository.IUsuarioRepository;
 import com.feriavirtual.apirest.service.IUsuarioService;
 

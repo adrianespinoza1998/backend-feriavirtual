@@ -1,9 +1,10 @@
 package com.feriavirtual.apirest.service;
 
 import java.util.List;
-import com.feriavirtual.apirest.models.UsuarioJoin;
+
 import com.feriavirtual.apirest.models.Mensaje;
 import com.feriavirtual.apirest.models.Usuario;
+import com.feriavirtual.apirest.models.UsuarioJoin;
 
 public interface IUsuarioService {
 

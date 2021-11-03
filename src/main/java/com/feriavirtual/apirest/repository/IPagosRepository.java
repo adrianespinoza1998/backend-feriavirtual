@@ -1,11 +1,12 @@
 package com.feriavirtual.apirest.repository;
 
-import com.feriavirtual.apirest.models.Pagos;
-import com.feriavirtual.apirest.models.PagosJoin;
-import org.springframework.jdbc.core.JdbcTemplate;
-
 import java.math.BigInteger;
 import java.util.List;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.feriavirtual.apirest.models.Pagos;
+import com.feriavirtual.apirest.models.PagosJoin;
 
 public interface IPagosRepository {
 

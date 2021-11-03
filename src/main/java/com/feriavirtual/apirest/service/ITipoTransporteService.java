@@ -1,10 +1,9 @@
 package com.feriavirtual.apirest.service;
 
-import com.feriavirtual.apirest.models.Mensaje;
-import com.feriavirtual.apirest.models.TipoProducto;
-import com.feriavirtual.apirest.models.TipoTransporte;
-
 import java.util.List;
+
+import com.feriavirtual.apirest.models.Mensaje;
+import com.feriavirtual.apirest.models.TipoTransporte;
 
 public interface ITipoTransporteService {
 

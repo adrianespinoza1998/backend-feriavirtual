@@ -1,11 +1,10 @@
 package com.feriavirtual.apirest.service;
 
+import java.util.List;
+
 import com.feriavirtual.apirest.models.Contrato;
 import com.feriavirtual.apirest.models.ContratoJoin;
 import com.feriavirtual.apirest.models.Mensaje;
-import org.springframework.jdbc.core.JdbcTemplate;
-
-import java.util.List;
 
 public interface IContratoService {
 

@@ -1,18 +1,17 @@
 package com.feriavirtual.apirest.service.impl;
 
-import com.feriavirtual.apirest.models.Mensaje;
-import com.feriavirtual.apirest.models.TipoProducto;
-import com.feriavirtual.apirest.repository.ITipoProductoRepository;
-import com.feriavirtual.apirest.service.ITipoProductoService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.Map;
+import com.feriavirtual.apirest.models.Mensaje;
+import com.feriavirtual.apirest.models.TipoProducto;
+import com.feriavirtual.apirest.repository.ITipoProductoRepository;
+import com.feriavirtual.apirest.service.ITipoProductoService;
 
 
 @Configurable

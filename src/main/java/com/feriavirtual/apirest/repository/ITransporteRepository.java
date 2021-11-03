@@ -1,9 +1,10 @@
 package com.feriavirtual.apirest.repository;
 
-import com.feriavirtual.apirest.models.Transportes;
+import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.List;
+import com.feriavirtual.apirest.models.Transportes;
 
 public interface ITransporteRepository {
 
