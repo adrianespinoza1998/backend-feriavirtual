@@ -158,6 +158,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		Usuario buscarUsuario= usuarioRepository.verificarUsuario(usuario.getCorreo().toUpperCase());
 
 		if(verificarPassword(usuario.getContrasena(), buscarUsuario.getContrasena())){
+			buscarUsuario.setContrasena("");
 			return buscarUsuario;
 		}else{
 			return new Usuario();
