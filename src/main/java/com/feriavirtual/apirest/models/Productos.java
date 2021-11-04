@@ -8,6 +8,7 @@ public class Productos {
 	private  int stock;
 	private  int idUsuario;
 	private  int idTipoProducto;
+	private String img;
 
 	public Productos() {
 	}
@@ -60,6 +61,14 @@ public class Productos {
 		this.idTipoProducto = idTipoProducto;
 	}
 
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 	@Override
 	public String toString() {
 		return "Productos{" +
@@ -69,6 +78,7 @@ public class Productos {
 				", stock=" + stock +
 				", idUsuario=" + idUsuario +
 				", idTipoProducto=" + idTipoProducto +
+				", img='" + img + '\'' +
 				'}';
 	}
 }

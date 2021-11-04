@@ -4,12 +4,13 @@ import java.util.List;
 
 import com.feriavirtual.apirest.models.Mensaje;
 import com.feriavirtual.apirest.models.Productos;
+import com.feriavirtual.apirest.models.ProductosJoin;
 
 public interface IProductoService {
 
 	Mensaje crearProducto(Productos producto);
 	
-	List<Productos> listarProductos(int idUsuario);
+	List<ProductosJoin> listarProductos(int idUsuario);
 	
 	Productos getProductoById(int id);
 	

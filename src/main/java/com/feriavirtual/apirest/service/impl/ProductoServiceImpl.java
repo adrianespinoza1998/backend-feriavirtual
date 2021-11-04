@@ -2,6 +2,7 @@ package com.feriavirtual.apirest.service.impl;
 
 import java.util.List;
 
+import com.feriavirtual.apirest.models.ProductosJoin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -37,7 +38,7 @@ public class ProductoServiceImpl implements IProductoService{
 		try{
 			boolean crearProducto = productoRepository.crearProducto(producto.getKilos(),
 					producto.getPrecio(), producto.getStock(), producto.getIdUsuario(),
-					producto.getIdTipoProducto());
+					producto.getIdTipoProducto(), producto.getImg());
 
 			if(crearProducto){
 				mensaje.setMsg("Producto con el id tipo producto: " + producto.getIdTipoProducto() + " creado de forma correcta");
@@ -57,7 +58,7 @@ public class ProductoServiceImpl implements IProductoService{
 	}
 
 	@Override
-	public List<Productos> listarProductos(int idUsario) {
+	public List<ProductosJoin> listarProductos(int idUsario) {
 		productoRepository.setJdbcTemplate(jdbcTemplate);
 		return productoRepository.listarProductos(idUsario);
 	}
@@ -75,9 +76,9 @@ public class ProductoServiceImpl implements IProductoService{
 		Mensaje mensaje = new Mensaje();
 
 		try{
-			boolean editarProducto = productoRepository.editarProducto(producto.getIdProducto(),
+			boolean editarProducto = productoRepository.editarProducto(id,
 					producto.getKilos(), producto.getPrecio(), producto.getStock(),producto.getIdUsuario(),
-					producto.getIdTipoProducto());
+					producto.getIdTipoProducto(), producto.getImg());
 
 			if(editarProducto){
 				mensaje.setMsg("Producto con el id: " + id + " editado");

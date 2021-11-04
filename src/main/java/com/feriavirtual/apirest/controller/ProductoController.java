@@ -2,6 +2,7 @@ package com.feriavirtual.apirest.controller;
 
 import java.util.List;
 
+import com.feriavirtual.apirest.models.ProductosJoin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +31,7 @@ public class ProductoController {
 	}
 	
 	@GetMapping("/api/producto/{id}")
-	public List<Productos> listarProducto(@PathVariable int id){
+	public List<ProductosJoin> listarProducto(@PathVariable int id){
 		return productoService.listarProductos(id);
 	}
 	

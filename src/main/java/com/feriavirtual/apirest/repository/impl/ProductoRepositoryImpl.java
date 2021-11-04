@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.feriavirtual.apirest.models.ProductosJoin;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -31,7 +32,7 @@ public class ProductoRepositoryImpl implements IProductoRepository{
 
 
 	@Override
-	public boolean crearProducto(int kilos, int precio, int stock, int idUsuario, int idTipoProducto) {
+	public boolean crearProducto(int kilos, int precio, int stock, int idUsuario, int idTipoProducto, String img) {
 
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("sp_crear_producto");
@@ -41,7 +42,8 @@ public class ProductoRepositoryImpl implements IProductoRepository{
 				.addValue("in_precio", precio)
 				.addValue("in_stock", stock)
 				.addValue("in_id_usuario", idUsuario)
-				.addValue("in_id_tipo_producto", idTipoProducto);
+				.addValue("in_id_tipo_producto", idTipoProducto)
+				.addValue("in_img", img);
 
 		Map out = simpleJdbcCall.execute(in);
 
@@ -55,11 +57,11 @@ public class ProductoRepositoryImpl implements IProductoRepository{
 	}
 
 	@Override
-	public List<Productos> listarProductos(int idUsuario) {
+	public List<ProductosJoin> listarProductos(int idUsuario) {
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("sp_listar_producto_all")
 				.returningResultSet("out_pc_listar_producto",
-						BeanPropertyRowMapper.newInstance(Productos.class));
+						BeanPropertyRowMapper.newInstance(ProductosJoin.class));
 
 		SqlParameterSource in = new MapSqlParameterSource()
 				.addValue("in_id_usuario", idUsuario);
@@ -97,7 +99,7 @@ public class ProductoRepositoryImpl implements IProductoRepository{
 	}
 
 	@Override
-	public boolean editarProducto(int id, int kilos, int precio, int stock, int idUsuario, int idTipoProducto) {
+	public boolean editarProducto(int id, int kilos, int precio, int stock, int idUsuario, int idTipoProducto, String img) {
 
 		simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
 				.withProcedureName("sp_actualizar_producto");
@@ -108,7 +110,8 @@ public class ProductoRepositoryImpl implements IProductoRepository{
 				.addValue("in_precio", precio)
 				.addValue("in_stock", stock)
 				.addValue("in_id_usuario", idUsuario)
-				.addValue("in_id_tipo_producto", idTipoProducto);
+				.addValue("in_id_tipo_producto", idTipoProducto)
+				.addValue("in_img", img);
 
 		Map out = simpleJdbcCall.execute(in);
 
